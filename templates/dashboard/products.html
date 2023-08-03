@@ -1,0 +1,87 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+ 
+
+          
+      
+    
+       <!-- Table -->
+       <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Products</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-light table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">IMAGE</th>
+                    <th scope="col">PRODUCT VARIANT</th>
+                    <th scope="col">PRODUCT</th>
+                    <th scope="col">CATEGORY</th>
+<!--                    <th scope="col">PRICE</th>-->
+
+                   
+                  </tr>
+                </thead>
+             
+                {%for prod in products%}
+                <tbody> 
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                          <img alt="" src="{{prod.image.get_file_path }}">
+                        </a>
+                      </th>
+                    </div>
+                          <td>
+                          {{prod.name}}  </td>
+                    <td>
+                      {{prod.products.product_name}}
+                    </td>
+                    <td>
+                      <span class="p-cat">
+                       {{prod.products.category}}
+                      </span>
+                    </td>
+<!--                    <td>-->
+<!--                      <span class="p-price">-->
+<!--                        {{prod.sale_price}}-->
+<!--                      </span>-->
+<!--                    </td>-->
+                  </tr>
+                  
+                </tbody>
+                {%endfor%}
+              </table>
+            </div>
+           
+      
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current-page">{{ products.number }}</span>
+    
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+{% endblock %}
+</html>

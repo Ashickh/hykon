@@ -1,0 +1,718 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %} {{ product_variant.products.browser_title }} {% endblock title %}
+{% block css %}
+<style>
+.MsoNormalTable table, .MsoNormalTable td, .MsoNormalTable tr {
+    border: none !important;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<link rel="stylesheet" href="{% static 'css/photoswipe.min.css' %}">
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+<section class="">
+    <div class="row">
+        <div class="col-12 col-lg-12  ">
+            <div class="block-slideshow__body ">
+                <div class="block-slideshow__slide">
+                    <h2>{{ product_variant.products.product_name }}</h2>
+                    <img src="{{ main_category.get_banner_image_path }}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true"
+                               data-link-updated="{% url 'home' %}">Home </a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{main_category.category_name}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="product product--layout--standard" data-layout="standard">
+            <div class="product__content">
+                <!-- .product__gallery -->
+                <div class="product__gallery ">
+                    <div class="product-gallery sticky">
+                        <div class="product-gallery__featured single-img-slide">
+                            <div class="share">
+                                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                <ul class="share-button">
+                                    <li class="fb">
+                                        <a href="javascript:void(0);" onclick="share_fb()" data-checked="false"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a target="_blank" href="https://twitter.com/share?text=Soliz 2000 + LiFe 24V 50Ah Combo Price in India - Buy Soliz 2000 + LiFe 24V 50Ah Combo online at https://www.hykonindia.com/products/soliz-solar-inverter?variant=soliz-2000-life-24v-50ah-combo&amp;hashtags=hykon"
+                                           data-size="large" data-checked="true"
+                                           data-link-updated="https://twitter.com/share?text=Soliz 2000 + LiFe 24V 50Ah Combo Price in India - Buy Soliz 2000 + LiFe 24V 50Ah Combo online at https://www.hykonindia.com/products/soliz-solar-inverter?variant=soliz-2000-life-24v-50ah-combo&amp;hashtags=hykon">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="pintrest">
+                                        <a href="" data-pin-do="buttonPin"
+                                           data-pin-description="Soliz 2000 + LiFe 24V 50Ah Combo"
+                                           data-pin-url="https://www.hykonindia.com/products/soliz-solar-inverter"
+                                           data-pin-media="https://www.hykonindia.com/uploads/products/200024-p618248c62b781.jpg">
+                                        </a>
+                                        <a data-pin-custom="false" target="_blank" data-checked="false" data-pin-log="button_pinit" data-pin-href="https://www.pinterest.com/pin/create/button?guid=CtVMcHHmxWbc-1&amp;url=https%3A%2F%2Fwww.hykonindia.com%2Fproducts%2Fsoliz-solar-inverter&amp;media=https%3A%2F%2Fwww.hykonindia.com%2Fuploads%2Fproducts%2F200024-p618248c62b781.jpg&amp;description=Soliz%202000%20%2B%20LiFe%2024V%2050Ah%20Combo">
+                                            <i class="fab fa-pinterest" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="add-to-wishlist"
+                                 data-variant="eyJpdiI6IjZHdENHalwvRkZUeU5TR0ZuOE03WUl3PT0iLCJ2YWx1ZSI6Im01cVZkdWFGNTRzTU16WitBVENHd2c9PSIsIm1hYyI6Ijc4ODQyYzlhMzI3MGFlYjg3MzIwMjQwZmE3YzM0OGQwOGU3NmE4NjNiY2QwOWQyZDg2NGZmMjMxZmZiNjk4NWQifQ== class="
+                            >
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <div id="sync1" class="my-simple-gallery owl-carousel owl-theme" itemscope itemtype="http://schema.org/ImageGallery">
+                                    <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                        <img src="{{ product_variant.image.get_file_path }}" itemprop="thumbnail" alt="Image description" />
+                                    </figure>
+                                    {% with product_variant|get_variant_images as images %}
+                                    {% for image in images %}
+                                    <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                        <img src="{{ image.image.get_file_path }}" itemprop="thumbnail" alt="Image description" />
+                                    </figure>
+                                    {% endfor %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                            <div class="sync2-wrapper">
+                                <div id="sync2" class="owl-carousel owl-theme">
+                                    <div class="item">
+                                        <img class="img-fluid" src="{{ product_variant.image.get_file_path }}">
+                                    </div>
+                                    {% with product_variant|get_variant_images as images %}
+                                    {% for image in images %}
+                                    <div class="item">
+                                        <img class="img-fluid" src="{{ image.image.get_file_path }}">
+                                    </div>
+                                    {% endfor %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .product__gallery / end -->
+                <div class="  bg-white hykon-product-view">
+                    <!-- .product__info -->
+                    <div class="row">
+                        <div class="col-md-12 product-view-page ">
+                            <div class="product__info detail">
+                                <div class="product__wishlist-compare">
+                                    <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                                            data-placement="right" title="" data-original-title="Wishlist">
+                                        <svg width="16px" height="16px">
+                                            <use
+                                                    xlink:href="https://www.hykonindia.com/hykon-ui/images/sprite.svg#wishlist-16">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                                            data-placement="right" title="" data-original-title="Compare">
+                                        <svg width="16px" height="16px">
+                                            <use
+                                                    xlink:href="https://www.hykonindia.com/hykon-ui/images/sprite.svg#compare-16">
+                                            </use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <h1 class="product__name" style="color:#000;">{{ product_variant.name }}</h1>
+                                <div data-test="hidden-price"
+                                     class="product__sidebar price-cnre  web-dis-none mob-dis-block">
+                                    {% with product_variant|get_price_of_product as price %}
+                                    <p>M.R.P: {{price.new_sale_price}}</p>
+                                    <span> Inclusive of all taxes</span>
+                                    <div class="product__prices">
+                                        ₹{{price.sale_price}}
+                                    </div>
+                                    {% endwith %}
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="product__description">
+                                    {{product_variant.products.summary|safe}}
+                                </div>
+                                <hr>
+                                <div class="form-group product__option">
+                                    <div class="input-radio-label">
+                                        <div style="font-style: normal;font-weight: 500;font-size: 16px;line-height: 24px;color: #000000;margin-bottom: 12px;"
+                                             class="">
+                                            <strong>Variants</strong>
+                                        </div>
+                                        <div class="input-radio-label__list varient">
+                                            {% for variant in variant_products %}
+                                            <label>
+                                                <a class="varient-list" href="{% url 'product-detail' variant.slug %}"
+                                                   data-checked="true"
+                                                   data-link-updated="{% url 'product-detail' variant.slug %}">
+                                                    <span style="font-style: normal;font-weight: 500;font-size: 13px;line-height: 17px;color: #999999;">{{variant.name}}</span>
+                                                </a>
+                                            </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <br> -->
+<!--                                <div class="product__description">-->
+<!--                                    <p><b>2 Years Warranty</b></p>-->
+<!--                                    <p>130 LPD, 200 LPD, 260 LPD, 340 LPD</p>-->
+
+<!--                                </div>-->
+
+                                <hr style="border: 1px solid #ECECEC;">
+
+<!--                                <hr style="border: 1px solid #ECECEC;">-->
+                                {% with product_variant|get_price_of_product as price %}
+                                <div class="price-detail mb-4">
+                                    <div class="row">
+                                        <div class="col-12 hy-text-blue">
+                                            MRP
+                                        </div>
+                                        <div class="col-12">
+                                            <span class="hy-price">₹ {{ price.new_sale_price }}</span>
+                                        </div>
+                                        <div class="new-off">
+                                            <ul>
+                                                <li><span class="old">₹ {{ price.new_retail_price }}</span></li>
+                                                <li><span class="off-50">{{ price.get_discount_percentage }}% off</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-12 hy-info-text">
+                                            Inclusive of all tax
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if price.new_sale_price > 0 %}
+                                <div class="cart-button">
+                                    <div class="row">
+                                        <div class="col-6 btn-cart">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary btn-lg hy-button-booknow" id="add_to_cart" data-product_slug="{{product_variant.slug}}">Book Now</button>
+                                        </div>
+                                        <div class="col-6 btn-enquire">
+                                            <button class="btn btn-primary btn-lg hy-button-enquire" id="enquire-now"  data-bs-toggle="modal" data-bs-target="#modal-enquiry">Enquire Now</button>
+                                            <div class="modal" id="modal-enquiry">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Enquiry Form</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <div class="row m-0 login-cntr">
+                                                                <div class="col-md-5 load-pop-bg">
+                                                                    <div class="row">
+                                                                        <a class="col-12 popup-hy-logo" href="http://localhost:8000">
+                                                                            <img src="{% static 'images/hykon-white.png' %}">
+                                                                        </a>
+                                                                        <h3 class="col-12 popup-head-hy"> Post your queries. We will assist you to choose the right product</h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 p-0 load-pop-form">
+                                                                    <div class="popup-card">
+                                                                        <div class="card-body">
+                                                                            <form method="post" action="" id="modal-enquiry-form">
+                                                                                <div class="form-row">
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>Name</label>
+                                                                                        <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                                                                                    </div>
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>Email address  </label>
+                                                                                        <input type="email" class="form-control" name="mail" placeholder="Enter email  ">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>Place</label>
+                                                                                        <input type="text" class="form-control" name="place" placeholder="Enter place  ">
+                                                                                    </div>
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>State</label>
+                                                                                        <input type="text" class="form-control" name="state" placeholder="Enter state  ">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>District</label>
+                                                                                        <input type="text" class="form-control" name="district" placeholder="Enter district  ">
+                                                                                    </div>
+                                                                                    <div class="col-md-6 mb-3">
+                                                                                        <label>Phone Number</label>
+                                                                                        <input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleFormControlSelect1">Sales/Service/AMC</label>
+                                                                                    <select class="form-control" id="exampleFormControlSelect1" name="requirement" required="" aria-required="true">
+                                                                                        <option value="" disabled="" selected="">Enter Your Requirement  </option>
+                                                                                        <option>Sale</option>
+                                                                                        <option>Service</option>
+                                                                                        <option>AMC</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Message</label>
+                                                                                    <input type="text" class="form-control" name="message" placeholder="message">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <button type="submit" class="btn btn-primary float-left" id="common-popup-submit">Submit</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="del-policy">
+                                </div>
+                                <div class="product__sidebar  mob-dis-none">
+                                    <a href="{% url 'delivery-polices' %}" target="_blank"
+                                       data-checked="true"
+                                       data-link-updated="{% url 'delivery-polices' %}">
+                                        <b>Delivery Polices <i class="fas fa-truck"></i> </b>
+                                    </a>
+                                </div>
+                                <div class="tabs-sec2">
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item " role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-home" type="button" role="tab"
+                                                    aria-controls="pills-home" aria-selected="true">Description</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-profile" type="button" role="tab"
+                                                    aria-controls="pills-profile" aria-selected="false">Specification</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content product-tabs" id="pills-tabContent">
+                                        <div class="tab-pane fade show active " id="pills-home" role="tabpanel"
+                                             aria-labelledby="pills-home-tab">
+                                            <div class="product-spec-dec">
+                                                {{ product_variant.short_description|safe }}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                             aria-labelledby="pills-profile-tab">
+                                            <div class="spec">
+                                                {% with product_variant|specifications_of_product as specifications %}
+                                                {% for main_spec in specifications %}
+                                                <div class="spec__section">
+                                                    <h4 class="spec__section-title">{{main_spec.group}}</h4>
+                                                    {% for spec in main_spec.specs %}
+                                                    <div class="spec__row">
+                                                        <div class="spec__name">{{ spec.key }}</div>
+                                                        <div class="spec__value">{{ spec.value }}</div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                {% endfor %}
+                                                {% endwith %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review row">
+                                        <div class="review-text">
+                                            <ul>
+                                                <li><span>Reviews</span></li>
+<!--                                                <li class="float-right"><a href=""> View All</a></li>-->
+                                            </ul>
+
+                                        </div>
+                                        <div class="border-b"></div>
+                                        {% with product_variant|get_product_reviews as product_reviews %}
+                                        {% for review in product_reviews %}
+                                        <div class="review-typ">
+                                            <ul>
+                                                <li>
+                                                    <h5><strong>{{ review.user.get_full_name }}</strong> <span class="staring2">{{ review.rating }} <i class="fa fa-star" aria-hidden="true"></i></span></h5>
+                                                </li>
+                                                <li>
+                                                    <p>{{ review.review }}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 product-view-page anoop">
+                            <div class="block block-products-carousel hykon-product-view" data-layout="grid-5">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .product__info / end -->
+                </div>
+            </div>
+
+
+            <div class="block-header rel-prd-cntr">
+                <div class="block-header__arrows-list  ">
+                    <button class="block-header__arrow block-header__arrow--left modile-hide" type="button">
+                        <svg width="7px" height="11px">
+                            <use
+                                    xlink:href="https://www.hykonindia.com/hykon-ui/images/sprite.svg#arrow-rounded-left-7x11">
+                            </use>
+                        </svg>
+                    </button>
+                    <button class="block-header__arrow block-header__arrow--right modile-hide">
+                        <svg width="7px" height="11px">
+                            <use
+                                    xlink:href="https://www.hykonindia.com/hykon-ui/images/sprite.svg#arrow-rounded-right-7x11">
+                            </use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="pb-50">
+    <div class="container">
+        <h3>Similar Products</h3>
+        <hr>
+        <br>
+        <div class="row products-view__list products-list" data-layout="grid-3-sidebar" data-with-features="false">
+            <div class="similar-products products-list__body  owl-carousel owl-theme carousel-wrap">
+                {% for variant in variant_products %}
+                {% if variant != product_variant %}
+                <div class="item   prd-filt-list">
+                    <div class="product-card ">
+                        <div class="product-card__badges-list">
+                            <div class="product-card__badge product-card__badge--new">{{ main_category.category_name }} </div>
+                            <span class="fav"> <i class="fa fa-heart" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="product-card__image">
+                            <a href="{% url 'product-detail' variant.slug %}"
+                               data-checked="true"
+                               data-link-updated="{% url 'product-detail' variant.slug %}">
+                                <img src="{{ variant.get_image_path }}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-card__info">
+                        </div>
+                        <div class="product-card__actions">
+                            <div class="star-head">
+                                <span>{{ variant.name }}</span>
+                                <span class="staring">4 <i class="fa fa-star" aria-hidden="true"></i></span>
+                            </div>
+                            {% with variant|get_price_of_product as price %}
+                            <div class="color-primery">
+                                MRP: <span>{{ price.new_sale_price }}/-</span>
+                            </div>
+                            <span class="old-text"><span> MRP: {{ price.sale_price }}</span></span>
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+<script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
+<script src="{% static 'js/photoswipe.min.js' %}"></script>
+<script>
+         (function($) {
+  var $pswp = $('.pswp')[0];
+  var image = [];
+  $('.my-simple-gallery').each(function() {
+    var $pic = $(this),
+      getItems = function() {
+        var items = [];
+        $pic.find('a').each(function() {
+          var $href = $(this).attr('href'),
+            $size = $(this).data('size').split('x'),
+            $width = $size[0],
+            $height = $size[1];
+          var item = {
+            src: $href,
+            w: $width,
+            h: $height
+          }
+          items.push(item);
+        });
+        return items;
+      }
+    var items = getItems();
+    $.each(items, function(index, value) {
+      image[index] = new Image();
+      image[index].src = value['src'];
+    });
+    $pic.on('click', 'figure', function(event) {
+      event.preventDefault();
+
+      var $index = $(this).index();
+      var options = {
+        index: $index,
+        bgOpacity:0.85,
+        showHideOpacity: true,
+        shareEl: false,
+        history: false,
+        focus: true,
+        closeOnScroll: false,
+        galleryPIDs:false,
+
+      }
+      var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+      lightBox.init();
+    });
+  });
+})(jQuery);
+
+
+      </script>
+   <script>
+      const thumbnails = document.querySelectorAll('#thumbnails img');
+      const mainVideo = document.querySelector('#main-video');
+      const playButton = document.querySelector('#video-overlay-play-button');
+      const videoOverlay = document.querySelector('#video-overlay');
+
+      if(thumbnails){
+      thumbnails.forEach(thumbnail => {
+         thumbnail.addEventListener('click', () => {
+            const videoSrc = thumbnail.getAttribute('data-video-src');
+            mainVideo.src = videoSrc;
+            mainVideo.load();
+         });
+      });
+   }
+
+      if(playButton){
+         playButton.addEventListener('click', () => {
+         mainVideo.play();
+         videoOverlay.style.display = 'none';
+      });
+
+      }
+      if(mainVideo){
+
+      mainVideo.addEventListener('pause', () => {
+         videoOverlay.style.display = 'flex';
+      });
+   }
+   </script>
+   <script>
+
+      $('.similar-products').owlCarousel({
+
+         loop: true,
+         margin: 20,
+         responsiveClass: true,
+         responsive: {
+            0: {
+               items: 1,
+               nav: true
+            },
+            600: {
+               items: 1,
+               nav: true
+            },
+            1000: {
+               items: 4,
+               nav: true,
+               loop: false
+            }
+         }
+      })
+   </script>
+   <script>
+      $(document).ready(function () {
+         var sync1 = $("#sync1");
+         var sync2 = $("#sync2");
+         var slidesPerPage = 4; //globaly define number of elements per page
+         var syncedSecondary = true;
+
+         sync1.owlCarousel({
+            items: 1,
+            slideSpeed: 2000,
+            nav: false,
+            autoplay: false,
+            dots: true,
+            loop: true,
+            responsiveRefreshRate: 200,
+            navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+         }).on('changed.owl.carousel', syncPosition);
+
+         sync2
+            .on('initialized.owl.carousel', function () {
+               sync2.find(".owl-item").eq(0).addClass("current");
+            })
+            .owlCarousel({
+               items: slidesPerPage,
+               dots: true,
+               nav: true,
+               smartSpeed: 200,
+               slideSpeed: 500,
+               slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+               responsiveRefreshRate: 100
+            }).on('changed.owl.carousel', syncPosition2);
+
+         function syncPosition(el) {
+            //if you set loop to false, you have to restore this next line
+            //var current = el.item.index;
+
+            //if you disable loop you have to comment this block
+            var count = el.item.count - 1;
+            var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+
+            if (current < 0) {
+               current = count;
+            }
+            if (current > count) {
+               current = 0;
+            }
+
+            //end block
+
+            sync2
+               .find(".owl-item")
+               .removeClass("current")
+               .eq(current)
+               .addClass("current");
+            var onscreen = sync2.find('.owl-item.active').length - 1;
+            var start = sync2.find('.owl-item.active').first().index();
+            var end = sync2.find('.owl-item.active').last().index();
+
+            if (current > end) {
+               sync2.data('owl.carousel').to(current, 100, true);
+            }
+            if (current < start) {
+               sync2.data('owl.carousel').to(current - onscreen, 100, true);
+            }
+         }
+
+         function syncPosition2(el) {
+            if (syncedSecondary) {
+               var number = el.item.index;
+               sync1.data('owl.carousel').to(number, 100, true);
+            }
+         }
+
+         sync2.on("click", ".owl-item", function (e) {
+            e.preventDefault();
+            var number = $(this).index();
+            sync1.data('owl.carousel').to(number, 300, true);
+         });
+      });
+    </script>
+<script>
+function render_error_block(errors) {
+  Object.entries(errors).forEach(([fieldName, errorMessages]) => {
+    const field = document.querySelector(`#modal-enquiry [name="${fieldName}"]`);
+    if (field) {
+      // Clear existing error messages, if any
+      const existingErrorMessages = field.parentNode.querySelectorAll('.error-message');
+      existingErrorMessages.forEach(errorMessage => errorMessage.remove());
+
+      // Add error message(s) for the field
+      errorMessages.forEach(errorMessage => {
+        const errorSpan = document.createElement('span');
+        errorSpan.className = 'error-message text-danger';
+        errorSpan.textContent = errorMessage;
+        field.parentNode.appendChild(errorSpan);
+      });
+    }
+  });
+}
+document.getElementById("modal-enquiry-form").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Get form data
+  const formData = new FormData(this);
+
+  // Make a fetch request
+  fetch("{% url 'enquiry' %}", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      // Reset the form
+      document.getElementById("modal-enquiry-form").reset();
+
+      // Get the modal element
+        const modal = document.getElementById('modal-enquiry');
+
+        // Close the modal
+        const bootstrapModal = new bootstrap.Modal(modal);
+        bootstrapModal.hide();
+
+      // Show success notification using Swal2
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Form submitted successfully."
+      });
+    } else {
+      return response.json()
+    }
+  })
+  .then( resp => {
+    if  (resp && resp.errors){
+        // Display error message
+       render_error_block(resp.errors)
+    }
+    if (resp){
+        throw new Error("Form submission failed.");
+    }
+  })
+  .catch(error => {
+    // Show error notification using Swal2
+    Swal.fire({
+      icon: "error",
+      title: "Error!",
+      text: error.message
+    });
+  });
+});
+</script>
+<script src="{% static 'js/order/product_detail.js' %}"></script>
+{% endblock  %}

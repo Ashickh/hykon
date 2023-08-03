@@ -1,0 +1,269 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% block content %}
+    <body>
+        <div class="career_apply_form_page">
+            <div class="career_apply_form_page_banner">
+                <img src="{% static 'images/career-banne.jpeg' %}" alt="">
+            </div>
+            <div class="container application_form_body">
+                <div class="application_form_card">
+                    <div class="applicatio_form_card_title">
+                        Career - Project Head- Solar Water Heater
+                    </div>
+                    <div class="applicatio_form_card_wrapper">
+                        <div class="applicatio_form_section">
+                            <div class="applicatio_form_general_profile">
+                                <form action="" method="post" id="application">
+                                    <table class="general-profile" width="1021" border="1" align="center" cellpadding="5"   cellspacing="1">
+                                      <tbody>
+                                        <tr> 
+                                            <th colspan="2"><strong>I.General Profile</strong></th>
+                                        </tr>
+                                        <tr> 
+                                              <td><strong> Name :*</strong></td>
+                                              <td><input name="name" type="text" id="name" size="50" required="" fdprocessedid="n744n"></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Photo : </strong></td>
+                                            <td><input name="Photo" type="file" id="Photo">
+                                              <br><em>(*Passport size Photo Max. Size 10 MB, <strong>Format JPG or JPEG</strong>)
+                                            </em>
+                                            </td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Post Applied For : * </strong></td>
+                                            <td><input name="post" type="text" id="post" value="Project Head- Solar Water Heater" size="50"></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Job Id : </strong></td>
+                                            <td><input name="jobid" type="text" id="jobid" value="17" size="50"></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Age : </td>
+                                            <td><input name="age" type="text" id="age" size="50" required=""></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Date of Birth : </strong></td>
+                                            <td><input name="dob" type="date" id="dob" value="" size="50" placeholder="DD-MM-YYYY" required=""></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Mobile No : * </strong></td>
+                                            <td><input name="mobile" type="text" id="mobile" size="50" required=""></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>E-Mail ID :</strong></td>
+                                            <td><input name="email" type="text" id="email" size="50" required=""></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Religion :</strong></td>
+                                            <td><input name="religion" type="text" id="religion" size="50"></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Permanent Address <br>[With Pincode]</strong></td>
+                                            <td><textarea name="address" cols="50" id="address"></textarea></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Communication Address<br>[With Pincode]</strong></td>
+                                            <td><textarea name="communication" cols="50" id="communication"></textarea></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <br>
+                                    <table class="edu-qualification" width="1021" border="1" align="center" cellpadding="5" cellspacing="1" bordercolor="#000000">
+                                      <tbody>
+                                        <tr> 
+                                            <th colspan="7"><strong>II.Educational Qualifications [<em>Highest 
+                                              Qualification First</em>]</strong></th>
+                                        </tr>
+                                        <tr class="edu_qualif_sub"> 
+                                            <td><strong>Course/Period of Study</strong></div></td>
+                                            <td><strong>Specilization if Any</strong></td>
+                                            <td><strong>University/Board</strong></td>
+                                            <td><strong>Institution</strong></td>
+                                            <td><strong>% of Mark</strong></td>
+                                            <td><strong>Class</strong></td>
+                                            <td><strong>Month &amp; Year of Completion</strong></td>
+                                        </tr>
+                                        <tr> 
+                                            <td><input name="QL1" type="text" id="QL1" size="10" fdprocessedid="udjgk"></td>
+                                            <td><input name="QL11" type="text" id="QL11" size="10" fdprocessedid="egnv3g"></td>
+                                            <td><input name="QL12" type="text" id="QL12" size="10" fdprocessedid="ung7su"></td>
+                                            <td><input name="QL13" type="text" id="QL13" size="10" fdprocessedid="fcnfz"></td>
+                                            <td><input name="QL14" type="text" id="QL14" size="10" fdprocessedid="xjswf"></td>
+                                            <td><input name="QL15" type="text" id="QL15" size="10" fdprocessedid="0fn0u4h"></td>
+                                            <td><input name="QL16" type="text" id="QL16" size="10" fdprocessedid="b5wcgo"></td>
+                                        </tr>
+                                      <tr> 
+                                        <td><input name="QL2" type="text" id="QL2" size="10"></td>
+                                        <td><input name="QL21" type="text" id="QL21" size="10"></td>
+                                        <td><input name="QL22" type="text" id="QL22" size="10"></td>
+                                        <td><input name="QL23" type="text" id="QL23" size="10"></td>
+                                        <td><input name="QL24" type="text" id="QL24" size="10"></td>
+                                        <td><input name="QL25" type="text" id="QL25" size="10"></td>
+                                        <td><input name="QL26" type="text" id="QL26" size="10"></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><input name="QL3" type="text" id="QL3" size="10"></td>
+                                        <td><input name="QL31" type="text" id="QL31" size="10"></td>
+                                        <td><input name="QL32" type="text" id="QL32" size="10"></td>
+                                        <td><input name="QL33" type="text" id="QL33" size="10"></td>
+                                        <td><input name="QL34" type="text" id="QL34" size="10"></td>
+                                        <td><input name="QL35" type="text" id="QL35" size="10"></td>
+                                        <td><input name="QL36" type="text" id="QL36" size="10"></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><input name="QL4" type="text" id="QL4" size="10"></td>
+                                        <td><input name="QL41" type="text" id="QL41" size="10"></td>
+                                        <td><input name="QL42" type="text" id="QL42" size="10"></td>
+                                        <td><input name="QL43" type="text" id="QL43" size="10"></td>
+                                        <td><input name="QL44" type="text" id="QL44" size="10"></td>
+                                        <td><input name="QL45" type="text" id="QL45" size="10"></td>
+                                        <td><input name="QL46" type="text" id="QL46" size="10"></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><input name="QL5" type="text" id="QL5" size="10"></td>
+                                        <td><input name="QL51" type="text" id="QL51" size="10"></td>
+                                        <td><input name="QL52" type="text" id="QL52" size="10"></td>
+                                        <td><input name="QL53" type="text" id="QL53" size="10"></td>
+                                        <td><input name="QL54" type="text" id="QL54" size="10"></td>
+                                        <td><input name="QL55" type="text" id="QL55" size="10"></td>
+                                        <td><input name="QL56" type="text" id="QL56" size="10"></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><input name="QL6" type="text" id="QL6" size="10"></td>
+                                        <td><input name="QL61" type="text" id="QL61" size="10"></td>
+                                        <td><input name="QL62" type="text" id="QL62" size="10"></td>
+                                        <td><input name="QL63" type="text" id="QL63" size="10"></td>
+                                        <td><input name="QL64" type="text" id="QL64" size="10"></td>
+                                        <td><input name="QL65" type="text" id="QL65" size="10"></td>
+                                        <td><input name="QL66" type="text" id="QL66" size="10"></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <br>
+                                  <table class="cv-upload" width="1021" border="1" align="center" cellpadding="5" cellspacing="1" bordercolor="#000000">
+                                      <tbody>
+                                        <tr> 
+                                            <th colspan="2"><strong>Upload <b>CV</b></strong></th>
+                                        </tr>
+                                        <tr> 
+                                            <td><strong>Select File From Your Device : <strong>*</strong></strong></td>
+                                            <td><input name="certificate" type="file" id="certificate" size="50" required=""><br>(Format allowed - .PDF, .DOC, .DOCX)</td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                                  <br>
+                                  <table class="work-experience" width="1021" border="1" align="center" cellpadding="5" cellspacing="1" bordercolor="#000000">
+                                    <tbody>
+                                        <tr> 
+                                          <th colspan="5"><strong>III.Work Experience [Latest experience first]</strong></div></th>
+                                        </tr>
+                                        <tr class="work-exp-sub"> 
+                                          <td><strong>Organization</strong></td>
+                                          <td>Functional Area</td>
+                                          <td>Designation</td>
+                                          <td><strong>From</strong></td>
+                                          <td><strong>To</strong></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><input name="EXP1" type="text" id="EXP1" size="10"></td>
+                                          <td><input name="EXP11" type="text" id="EXP11" size="10"></td>
+                                          <td><input name="EXP12" type="text" id="EXP12" size="10"></td>
+                                          <td><input name="EXP13" type="text" id="EXP13" size="10"></td>
+                                          <td><input name="EXP14" type="text" id="EXP14" size="10"></td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                                  <br>
+                                  <table class="Achievements" width="1021" border="1" align="center" cellpadding="5" cellspacing="1" bordercolor="#000000">
+                                      <tbody>
+                                        <tr> 
+                                          <th><strong>IV. Achievements during the term.</strong></th>
+                                        </tr>
+                                        <tr> 
+                                          <td><textarea name="Achievement" cols="100" rows="5" id="Achievement"></textarea></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><strong>Declaration : </strong>
+                                            <p> 
+                                              <input name="Declaration" type="checkbox" id="Declaration" value="YES" checked="">
+                                              <strong>*</strong> 
+                                              I do hereby declare that all the statements made in this application 
+                                              are true, complete and correct to the best of my knowledge and belief. 
+                                              I understand that, any information given above being found false or 
+                                              incorrect, my candidature for the post is liable to be rejected and 
+                                              my services are liable to be terminated forthwith without any notice 
+                                              to me.</p></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong><em>*All STAR marked fields are mandatory fields, please verify all mandatory 
+                                          fileds are filled correctly and then submit your application.</em></strong>
+                                        </td>
+                                      </tr>
+                                      <tr> 
+                                        <td><input type="submit" name="Submit" value="Submit Application" class="genric-btn info-border radius" fdprocessedid="1gfdbl">
+                                      </td></tr>
+                                    </tbody>
+                                  </table>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+    {% endblock  %}

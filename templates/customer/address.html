@@ -1,0 +1,105 @@
+{% extends 'customer/base.html' %}
+{% load crispy_forms_tags %}
+{% block current_page %} Manage Addresses {% endblock %}
+{% block account_header %}Manage Addresses{% endblock %}
+{% block customer_account %}
+{{ block.super }}
+<div class="address_container" id="addressContent">
+    <div class="row">
+        <div class="col-lg-4 col-sm-12 add-address">
+            <a class="dashboard-add-address" href="#" onclick="return addpopupFunction();">
+                <div class="address-list-plus"></div>
+                <div class="btn btn-secondary btn-sm">Add New</div>
+            </a>
+            <div class="modal" id="addpopupForm" class="popup-form">
+              <div class="modal-content">
+                <div class="modal-head">
+                    <div class="modal-head-sec">
+                        <h5 class="modal-title">Add New Address</h5>
+                        <a class="close-popup" href="#" onclick="closePopupFunction()">X</a>
+                    </div>
+                        <div class="modal-body">
+                            <form id="warranty_form mt-4" action="{% url 'customer-address' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    {% for field in form %}
+                                        {{ field | as_crispy_field }}
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-5 mb-5">
+                                    <button id="update_fitness_center" type="submit" class="btn btn-primary ml-5">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for address in addresses %}
+        <div class="col-lg-4 col-sm-12 address-card">
+            <div class="address-card-body" id="card-body-883">
+                <div class="address-card__name">{{ address.address_obj.full_name }}</div>
+                    <div class="address-card-address">
+                        {{ address.address_obj.address1 }}
+                        <br>
+                            {{ address.address_obj.address2 }}
+                        <br>
+                            {{ address.address_obj.city }},
+                            {{ address.address_obj.state.name }},
+                            {{ address.address_obj.pincode }}
+                    </div>
+                    <div class="address-card-phone">
+                        <div class="address-card-title">Phone Number</div>
+                        <div class="address-card-phone-content">{{ address.address_obj.mobile_code }} {{ address.address_obj.mobile_number }}</div>
+                    </div>
+                    <div class="address-card-address">
+                        <div class="address-card-title">Address Type</div>
+                        <div class="address-card-content">{{ address.address_obj.get_type_display }}</div>
+                    </div>
+                    <div class="card-edit-link">
+                        <a class="edit" href="#" onclick="return editAddressFunction({{address.address_obj.id}});">Edit</a>
+                        <div class="modal" id="popupForm-{{address.address_obj.id}}" class="popup-form">
+                            <div class="modal-content">
+                              <div class="modal-head">
+                                    <div class="modal-head-sec">
+                                      <h5 class="modal-title">Edit Address</h5>
+                                      <a class="close-popup" href="#" onclick="CloseEditAddressFunction({{address.address_obj.id}})">X</a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="" action="{% url 'customer-address' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                            <input type="hidden" name="id" value="{{address.address_obj.id}}">
+                                            <div class="row">
+                                                {% for field in address.form %}
+                                                    {{ field | as_crispy_field }}
+                                                {% endfor %}
+                                            </div>
+                                            <div class="mt-5 mb-5">
+                                                <button id="update_address" type="submit" class="btn btn-primary ml-5">Submit</button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+    function editAddressFunction(address_id){
+        document.getElementById("popupForm-"+address_id).style.display="block";
+        return false;
+    }
+    function CloseEditAddressFunction(address_id){
+        document.getElementById("popupForm-"+address_id).style.display="none";
+    }
+</script>
+{% endblock %}

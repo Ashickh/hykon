@@ -1,0 +1,79 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+ 
+
+          
+      
+    
+      <!-- Table -->
+      <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Enquiries</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-light table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    
+                    <th scope="col">CUSTOMER</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">PHONE</th>
+                    <th scope="col">REQUIREMENT</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+             
+                {%for enq in enquiry%}
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                          <img alt="" src="../assets/img/theme/bootstrap.jpg">
+                        </a>
+                         
+                        <div class="media-body">
+                          
+                          <span class="mb-0 text-sm" style="">{{enq.name}}</span>
+                        </div>
+                         
+                      </div>
+                    </th>
+                    <td>
+                        {{enq.mail}}
+                    </td>
+                    <td>
+                      <span class="enq-phone">
+                        {{enq.phone}}
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="enq-req">
+                        {{enq.requirement}}
+                      </span>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+                {%endfor%}
+              </table>
+            </div>
+           
+      
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+{% endblock %}
+</html>

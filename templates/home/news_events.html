@@ -1,0 +1,82 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home</a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">News and Events </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+ </section>
+<section class="pb-10">
+    <div class="container">
+        <div class="tabs-sec">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">News</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Events</button>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content news-events row " id="pills-tabContent">
+            <div class="tab-pane row fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                {% for news in newses %}
+                <div class="col-md-6 col-lg-4 events-list news-list"> <a href="{% url 'news' news.slug %}"> <img class="news-img" src="{{ news.get_media_url }}" ></a>
+                    <div class="hide-content">
+                        <div class="news-sec">
+                           <ul class="card-meta list-inline mb-3">
+                                <li class="list-inline-item line-1 mt-2">
+                                    <i class="ti ti-calendar-event"></i>
+                                        <span class="eve-date">{{ news.created_at|date:"d F,Y"|upper }}</span>
+                                </li>
+                                <li class="list-inline-item mt-2 pull-right">
+                                    <span class="eve-views">{{ news.views }} <i class="fa fa-eye" aria-hidden="true"></i></span>
+                                </li>
+                            </ul>
+                            {% comment %} <div class="card-meta">
+                                <span class="date pull-left w-100">
+                                    <i class="ti ti-calendar-event"></i>
+                                    <span class="eve-date">{{ news.created_at|date:"d F,Y"|upper }}</span>
+                                </span>
+                                <span class="event pull-right">
+                                    <span class="eve-views">{{ news.views }} 
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </div> {% endcomment %}
+                        </div>
+                        <h6>{{ news.primary_heading }}</h6>
+                        <p>{{ news.short_description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane row col-md-4 fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                {% for event in events %}
+                <div class="col-md-6 col-lg-4 events-list container mb-5"> <a href="{% url 'event' event.slug %}"> <img class="eve-img" src="{{ event.get_media_url }}" ></a>
+                    <span>{{ event.event_date_time|date:"Y" }}&nbsp;<i class="far fa-calendar-alt" style="color:#FF3A3A"></i></span>
+                    <h6>{{ event.primary_heading }}</h6>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+{% endblock  %}

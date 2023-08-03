@@ -1,0 +1,142 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home</a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">News and Events</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+ </section>
+<section class="pb-100">
+    <div class="container events">
+        <div class="row pb-50">
+            <div class="col-md-5 col-sm-12 vertical-center event-text news-detail">
+                <div class="detail-center">
+                    <span class="news-date">{{ news.created_at|date:"j F, Y" }}</span>
+                    <h2>{{ news.primary_heading }}</h2>
+                    <p>{{ news.short_description }}</p>
+                </div>
+            </div>
+            <div class="col-md-7 pr-0 pl-0 col-sm-12 news-detail">
+                <img class="" src="{{ news.get_media_url }}">
+            </div>
+        </div>
+        <div class="row pb-50">
+            <div class="col-md-6 col-12">
+                <img class="img-100 desk" src="{% static 'images/news/vehicle.jpg' %}">
+            </div>
+            <div class="col-md-6 event-text">
+                <h2>{{ news.primary_heading }}</h2>
+                {{ news.content|safe }}
+            </div>
+        </div>
+        <div class="tab-content news-events row " id="pills-tabContent">
+            <div class="tab-pane row fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <h3>More News</h3>
+                {% for news_obj in more_news %}
+                <div class="col-md-6 col-sm-6 col-lg-4 events-list news-list"> <a href="{% url 'news' news_obj.slug %}"> <img src="{{ news_obj.get_media_url }}"></a>
+                    <div class="news-sec">
+                        <ul class="card-meta list-inline mb-3">
+                            <li class="list-inline-item line-1 mt-2">
+                                <i class="ti ti-calendar-event"></i>
+                                <span>{{ news.created_at|date:"j F, Y" }}</span>
+                            </li>
+                            <li class="list-inline-item mt-2 pull-right">
+                                <span>{{ news_obj.views }} <i class="fa fa-eye" aria-hidden="true"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <h6>{{ news_obj.primary_heading }}</h6>
+                    <p class="news-short-dec">{{ news_obj.short_description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} <div class="news-share">
+            
+            <ul class="footer-newsletter__social_links">
+                <li class="footer-newsletter__social-link footer-newsletter__social-link">
+                    <a class="clone " href="#" target="_blank" data-checked="false"><i class="fa fa-clone" aria-hidden="true"></i></a>
+                </li>
+                <li class=" footer-newsletter__social-link footer-newsletter__social-link--facebook">
+                    <a class="facebook " href="#" target="_blank" data-checked="false"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="footer-newsletter__social-link footer-newsletter__social-link--twitter">
+                    <a class="twitter" href="#" target="_blank" data-checked="false"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="footer-newsletter__social-link footer-newsletter__social-link--pinterest">
+                    <a class="pinterest" href="#" target="_blank" data-checked="false"><i class="fab fa-pinterest-p"></i></a>
+                </li>
+            </ul>
+        </div> {% endcomment %}
+        <dic class="news-share container">
+            <span class="share-heading">Share Now &nbsp;<i class="fa fa-share" aria-hidden="true"></i></span>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 share-container">
+                    <div class="row">
+                        <div class="col-3 footer-newsletter__social_links">
+                            <div class="footer-newsletter__social-link footer-newsletter__social-link">
+                                <a class="clone" href="#" id="copy-link" target="_blank" data-checked="false" onclick="return copy()"><i class="fa fa-clone" aria-hidden="true"></i></a>
+                              
+                            </div>
+                        </div>
+                        <div class="col-3 footer-newsletter__social_links">
+                            <div class="footer-newsletter__social-link footer-newsletter__social-link--facebook">
+                                <a class="facebook " href="https://www.facebook.com/login.php?skip_api_login=1&api_key=338179464269729&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv10.0%2Fdialog%2Fshare%3Fchannel%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df3d035feae48e8%2526domain%253Dwww.hykonindia.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.hykonindia.com%25252Ff2a670930c8ce4c%2526relation%253Dopener%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df8684b81071658%2526domain%253Dwww.hykonindia.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.hykonindia.com%25252Ff2a670930c8ce4c%2526relation%253Dopener%2526frame%253Df34ef444be6e9e8%2526result%253D%252522xxRESULTTOKENxx%252522%26display%3Dpopup%26href%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Fnews%252Fhykon-launching-electric-auto-in-2021%26client_id%3D338179464269729%26ret%3Dlogin%26sdk%3Djoey%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Fnews%252Fhykon-launching-electric-auto-in-2021&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df8684b81071658%26domain%3Dwww.hykonindia.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Ff2a670930c8ce4c%26relation%3Dopener%26frame%3Df34ef444be6e9e8%26result%3D%257B%2522error_code%2522%253A4201%252C%2522error_message%2522%253A%2522User%2Bcanceled%2Bthe%2BDialog%2Bflow%2522%257D%26error_code%3D4201%26error_message%3DUser%2Bcanceled%2Bthe%2BDialog%2Bflow%26e2e%3D%257B%257D&display=popup&locale=en_GB" target="_blank" data-checked="false"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-3 footer-newsletter__social_links">
+                            <div class="footer-newsletter__social-link footer-newsletter__social-link--twitter">
+                                <a class="twitter" href="https://twitter.com/intent/tweet?text=Hykon%20launching%20%27electric%20auto%27%20in%202021%20https://www.hykonindia.com/news/hykon-launching-electric-auto-in-2021%20&hashtags=hykon" target="_blank" data-checked="false"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-3 footer-newsletter__social_links">
+                            <div class="footer-newsletter__social-link footer-newsletter__social-link--pinterest">
+                                <a class="pinterest" href="https://in.pinterest.com/pin-builder/?description=Hykon+launching+%27electric+auto%27+in+2021&guid=euuz8zU7M9y4-1&media=https%3A%2F%2Fwww.hykonindia.com%2Fuploads%2Fmedia%2F1280x85360795cbb82a21.png&method=button&url=https%3A%2F%2Fwww.hykonindia.com%2Fnews%2Fhykon-launching-electric-auto-in-2021" target="_blank" data-checked="false"><i class="fab fa-pinterest-p"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+{% block javascripts %}
+<script type="text/javascript">
+    function copy() {
+        var currentUrl = window.location.href;
+        var messageEl = document.createElement("div");
+        messageEl.innerHTML = "<i class='fa fa-check-circle'></i> This page URL is copied!";
+        messageEl.classList.add("copy-message");
+        document.body.appendChild(messageEl);
+        var tempInput = document.createElement("input");
+        tempInput.setAttribute("value", currentUrl);
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        setTimeout(function() {
+            document.body.removeChild(messageEl);
+        }, 10000);
+        return false;
+    }
+</script>
+{% endblock  %}
+
+

@@ -1,0 +1,177 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<style>
+.MsoNormalTable table, .MsoNormalTable td, .MsoNormalTable tr {
+    border: none !important;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<link rel="stylesheet" href="{% static 'css/photoswipe.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/customer/cart.css' %}">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home  </a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>Shopping Cart</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    {% if carts %}
+    <div class="container cart-block mt-5 mb-5">
+        <div class="cart-container mb-5 mt-4">
+            <div class="col-md-12" id="add_remove_message_div" style="display: none;">
+                <div class="alert alert-warning" id="add_remove_message" role="alert">
+                    Product is removed from your cart
+                </div>
+            </div>
+            <div class="cart-cntr-heads">
+                <div class="row m-0 mob-dis-none">
+                    <div class="col-xl-2 col-md-2 p-0">
+                        <div class="cart-hd">
+                            Image
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 p-0">
+                        <div class="cart-hd">
+                            Product
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 p-0">
+                        <div class="cart-hd">
+                            Price
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 p-0">
+                        <div class="cart-hd">
+                            Quantity
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 p-0">
+                        <div class="cart-hd">
+                            Total
+                        </div>
+                    </div>
+                    <div class="col-xl-1 col-md-1 p-0">
+                        <div class="cart-hd">
+                            Remove
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for cart in carts %}
+            <div class="mob-car-cnt">
+                
+                <div class="cart-cntr">
+                <div class="row m-0">
+                    <div class="col-xl-2 col-md-2 col-5 p-0 cart-img" style="overflow: hidden;">
+                        <div class="cart-cnt">
+                            <a href="{% url 'product-detail' cart.product.slug %}" data-checked="false"><img src="{{ cart.product.get_image_path }}" alt="" class="img-fluid"></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-7 p-0 cart-price">
+                        <div class="cart-cnt">
+                            <a href="{% url 'product-detail' cart.product.slug %}" class="cart-table__product-name" data-checked="false">{{ cart.product.name }}</a>
+                            <ul class="cart-table__options">
+                                <li>MRP : ₹{{ cart.retail_price }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 p-0 mob-dis-none">
+                        <div class="cart-cnt text-left">
+                            ₹{{ cart.sale_price }}
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-5 p-0 cart-quantity">
+                        <div class="cart-cnt text-left">
+                            <div class="number">
+                                <input type="button" name="sub" value="-" class="minus remove_from_cart" data-product_slug="{{ cart.product.slug }}"></span>
+                                <input type="text" value="{{ cart.quantity }}" class="count" />
+                                <input type="button" name="add" value="+" class="plus add_to_cart" data-product_slug="{{ cart.product.slug }}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-5 p-0 cart-amount">
+                        <div class="cart-cnt text-left">
+                            {% with cart|get_product as result %}
+                            ₹{{ result }}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <div class="col-xl-1 col-md-1 col-2 p-0 cart-icon">
+                        <div class="cart-cnt text-left">
+                        <a href="#" class="delete_from_cart" data-product_slug="{{ cart.product.slug }}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {% comment %} </div> {% endcomment %}
+                {% endfor %}
+            </div>
+            <div class="row justify-content-end pt-5 cart-check-cntr">
+                <div class="col-12 col-md-7 col-lg-6 col-xl-5">
+                    <div class="checkout-card">
+                        <div class="checkout-card-body">
+                            <h3 class="checkout card-title">Cart Totals</h3>
+                            <table class="cart__totals">
+                                <thead class="cart__totals-header">
+                                    <tr>
+                                        <th>Subtotal</th>
+                                        <td>₹{{ total_price }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="cart__totals-body">
+                                </tbody>
+                                <tfoot class="cart__totals-footer">
+                                    <tr>
+                                        <th>Total</th>
+                                        <td>₹{{ total_price }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            {% if user.is_authenticated %}
+                            <div>
+                           
+                            <br>
+                            <a class="btn btn-primary btn-xl btn-block cart__checkout-button" href="{% url 'checkout' %}">Proceed to checkout</a>
+                            {% else %}
+                            <a data-toggle="modal" href="#" data-bs-toggle="modal" data-bs-target="#login-register" id="open-register" class="btn btn-primary btn-xl btn-block cart__checkout-button" data-checked="false">Please login to checkout</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-4" align="center">
+            <img src="{{ empty_cart_image.get_file_path }}" width="100%">
+            <a href="{% url 'home' %}" class="btn btn-primary btn-sm" style="margin-bottom: 100px;" data-checked="true" data-link-updated="https://www.hykonindia.com/products">Continue Shopping <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock  %}
+{% block javascripts %}
+<script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
+<script src="{% static 'js/photoswipe.min.js' %}"></script>
+<script src="{% static 'js/order/cart_list.js' %}"></script>
+{% endblock  %}

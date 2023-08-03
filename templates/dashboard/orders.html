@@ -1,0 +1,77 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+ 
+   
+     
+      <!-- Table -->
+      <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Orders</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-light table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">TRANSACTION ID</th>
+                    <th scope="col">PAYMENT METHOD</th>
+                    <th scope="col">ID</th>
+                   
+                    
+                  
+                  </tr>
+                </thead>
+             
+                {%for ord in orders%}
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                       
+                         
+                        <div class="media-body">
+
+                          <span class="mb-0 text-sm"><a href="{%url 'order_details' ord.id%}">{{ord.transaction_id}}</a></span>   
+                         
+                        </div>
+                         
+                      </div>
+                    </th>
+                    
+              
+
+                    <td>
+                      <span class="pay-method">
+                        {{ord.payment_method}}
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="or-id">
+                        {{ord.id}}
+                      </span>
+                    </td>
+
+                    
+                   
+                  
+                </tbody>
+                {%endfor%}
+              </table>
+            </div>
+           
+      
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+{% endblock %}
+</html>

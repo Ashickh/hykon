@@ -1,0 +1,88 @@
+{% extends 'home/index.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_filters %}
+    {% block css %}
+<style>
+.MsoNormalTable table, .MsoNormalTable td, .MsoNormalTable tr {
+    border: none !important;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<link rel="stylesheet" href="{% static 'css/photoswipe.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/customer/checkout-detail12.css' %}">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="proceed-block mt-5 mb-5">
+        <div class="col-12 col-lg-6 offset-lg-3 col-xl-6 offset-x6-3 mt-4 mt-lg-0 proceed-wrapper">
+            <div class="proceed-card">
+                <form action="{% url 'checkout-summary' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="trans_id" value="{{order.transaction_id}}">
+                    <input type="hidden" name="amount" value="{{order.total_sale_price}}">
+                    <div class="proceed-card-body">
+                        <h3 class="proceed-card-title">Your Order</h3>
+                        <table class="proceed__totals">
+                            <thead class="proceed__totals-header">
+                               <tr>
+                                  <th>Product</th>
+                                  <th>Total</th>
+                               </tr>
+                            </thead>
+                            {% for cart in carts %}
+                            <tbody class="proceed__totals-products">
+                                <tr>
+                                    <td>{{ cart.product.name }} × {{ cart.quantity }}</td>
+                                    {% with cart|get_product as result %}
+                                    <td>{{ result }}</td>
+                                    {% endwith %}
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                            <tbody class="proceed__totals-subtotals">
+                                <tr>
+                                    <th>Subtotal</th>
+                                    <td>₹{{ total_price }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="proceed__totals-footer">
+                               <tr>
+                                  <th>Total</th>
+                                  <td>₹{{ total_price }}</td>
+                               </tr>
+                            </tfoot>
+                         </table>
+                         <b>Payment Method</b>
+                         <div class="pr-payment-mode">
+                            <label for="online">
+                                <input type="radio" name="payment_method" value="online" id="online" checked=""> Online Payment
+                            </label>
+                        </div>
+                    </div>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="{{key}}"
+                            data-amount="{{order.total_sale_price}}"
+                            data-currency="INR"
+                            data-order_id="{{order.transaction_id}}"
+                            data-buttontext="Continue"
+                            data-name="{{order.users.first_name}}"
+                            data-description="Test"
+                            data-image="{{ logo.get_thumb_file_path }}"
+                            data-prefill.name="{{ order.users.first_name }} {{ order.users.last_name }}"
+                            data-prefill.email="{{ order.users.email }}"
+                            data-prefill.contact="{{ order.users.phone_number }}"
+                            data-theme.color="#da548f">
+                    </script>
+                    <input type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+<script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
+<script src="{% static 'js/photoswipe.min.js' %}"></script>
+<script src="{% static 'js/order/checkout.js' %}"></script>
+{% endblock  %}

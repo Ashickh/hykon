@@ -1,0 +1,11 @@
+@import './bs-breakpoint';
+section.site-banner{
+    width: 100%;
+    height: auto;
+
+    // @include respond-to("small"){
+    //     height: calc(100vh - (var(--main-nav-height) - var(--menu-bar)));
+    // }
+   
+  
+}

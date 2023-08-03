@@ -1,0 +1,292 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'scss/news.css' %}" rel="stylesheet">
+<style>
+        .indicator__area2{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .indicator__area2 label{
+            padding-left:10px;
+            margin-bottom:0;
+        }
+   .site-header__search{
+    max-width:480px;
+    width:100%;
+    margin:0;
+   }
+   .site-header__search input{
+    width:auto !important;
+   }
+   @media (max-width:1200px){
+    .site-header__search{
+        margin-left:80px !important;
+    }
+   }
+        @media (max-width: 991px)
+.owl-carousel .owl-item img {
+    margin: 0px auto;
+    width: 100px;
+    padding: 10%;
+    height: 100px;
+    object-fit: contain;
+}
+
+
+        .megamenu__links a {
+            text-transform: capitalize;
+        }
+        .menu__item-link {
+            text-transform: uppercase;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .error{
+            color:red;
+        }
+        .mobile-links--level--0>.mobile-links__item>.mobile-links__item-title .mobile-links__item-link {
+            text-transform: uppercase;
+            padding: 12px 20px;
+        }
+        [dir=ltr] .product-card__badges-list {
+            left: 18px;
+            max-width: 200px;
+        }
+
+        p{
+            font-size:18px !important;
+        }
+
+     .fixed-logo.active {
+    right: 70px;
+    width: 347px;
+     height: calc(100% - 200px);
+  overflow: auto;
+}
+
+        .fixed-logo {
+  position: fixed;
+  right: -440px;
+  top: 200px;
+  width: 440px;
+  z-index: 100;
+  transition: 1s;
+
+}
+   .banner-form.active {
+   overflow-y: unset;
+    width: 100%;
+    max-width: unset;
+     height: auto;
+    /* overflow: hidden; */
+    visibility: visible;
+    opacity: 1;
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.main-contact-icon-right-sd {
+    position: fixed;
+    right: 20px;
+    top: 135px;
+    z-index: 99;
+}
+
+        .branch-results {
+            border-radius: 5px;
+            padding: 20px;
+            color: #fff;
+            background: #3970ad;
+            position: relative;
+            margin: 10px 0;
+            min-height: 175px;
+        }
+    .pswp__img {
+    position: unset;
+}
+.pswp__img--placeholder{
+    display:none;
+}
+
+.link-share{
+        background: #25d366;
+        display: inline-block;
+    color: white;
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.fb-share{
+        background: #4267b2;
+        display: inline-block;
+    color: white;
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.tw-share{
+        background: #1da1f2;
+         display: inline-block;
+    color: white;
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.tw-share a{
+    color: white !important;
+}
+
+
+
+.pin-share {
+    background: #e60023;
+    display: inline-block;
+    color: white;
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#share{
+        background: #ff0f0f;
+}
+
+.pin-share a{
+    color: white !important;
+}
+
+.mobile-links--level--1 .mobile-links__item .mobile-links__item-link {
+    padding: 13px 20px;
+    text-transform: uppercase;
+}
+.mobile-hide{
+    display:block;
+}
+.mobile-show{
+    display:none;
+}
+
+@media  only screen and (max-width: 991px){
+
+.main-contact-icon-right-sd {
+    top: 10% !important;
+}
+
+.fixed-logo {
+    top: 60px !important;
+    right: -320px;
+    width: 320px !important;
+}
+.fixed-logo.active {
+    right: 0px;
+    width: 320px !important;
+}
+.banner-form {
+    height: 410px !important;
+}
+
+}
+
+
+@media  screen and (max-width: 600px) {
+ .mobile-hide{
+    display:none;
+}
+.mobile-show{
+   display: inline-block;
+}
+}
+
+
+
+    </style>
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home</a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'blog' %}" data-checked="true" data-link-updated="{% url 'blog' %}">Blogs</a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ current_blog.primary_heading }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h2>{{ current_blog.primary_heading }}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog_detail">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-8 col-sm-12 col-12 blog_detail__col">
+                <div class="ec-share">
+                    <div class="ecs_item">
+                        <div class="s-share">
+                        </div>
+                    </div>
+                    <div class="ecs_item">
+                        <div class="s-date">
+                            <span class="e-e">{{ current_blog.created_at|date:"j F Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="entry_content">
+                    <div class="blog_thumbnail">
+                        <img src="{{ current_blog.get_media_url }}" alt="">
+                    </div>
+                    {{ current_blog.content|safe }}
+                    <div>
+                        <h6><i class="fas fa-share"></i> Share now </h6>
+                        <div id="share" class="mobile-show fb-share"><i class="fa fa-share-alt" aria-hidden="true"></i></div>
+                        <div class="link-share" onclick="copyit('https://www.hykonindia.com/blog/stainless-steel-water-tanks')"><i class="fa fa-copy" aria-hidden="true"></i></div>
+                        <div onclick="share_fb()" class="fb-share"><i class="fab fa-facebook-f"></i></div>
+                        <div class="tw-share"><a target="_blank" href="https://twitter.com/share?text=Benefits of a Stainless Steel Water Tanks https://www.hykonindia.com/blog/stainless-steel-water-tanks &amp;hashtags=hykon" data-size="large" data-checked="true" data-link-updated="https://twitter.com/share?text=Benefits of a Stainless Steel Water Tanks https://www.hykonindia.com/blog/stainless-steel-water-tanks &amp;hashtags=hykon"><i class="fab fa-twitter"></i></a></div>
+                        <div class="pin-share"><a data-pin-do="buttonPin" data-pin-description="Benefits of a Stainless Steel Water Tanks" data-pin-url="https://www.hykonindia.com/blog/stainless-steel-water-tanks" data-pin-media="https://www.hykonindia.com/uploads/media/s-s-tank6059bb1f500f3.png" data-pin-custom="false" target="_blank" data-checked="false" data-pin-log="button_pinit" data-pin-href="https://www.pinterest.com/pin/create/button?guid=Xata_a0bJJxe-1&amp;url=https%3A%2F%2Fwww.hykonindia.com%2Fblog%2Fstainless-steel-water-tanks&amp;media=https%3A%2F%2Fwww.hykonindia.com%2Fuploads%2Fmedia%2Fs-s-tank6059bb1f500f3.png&amp;description=Benefits%20of%20a%20Stainless%20Steel%20Water%20Tanks"><i class="fab fa-pinterest" aria-hidden="true"></i></a></div>                                     </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-12 rt-imp-blk">
+                    <div class="important_links test2">
+                        <div class="header_top text-center">
+                            <h3>Related <span>Links</span></h3>
+                        </div>
+                        {% for blog in more_blogs %}
+                        <a href="{% url 'blog' blog.slug %}" data-checked="true" data-link-updated="https://www.hykonindia.com/blog/how-energy-efficient-is-solar-water-heater-than-an-electric-water-heater">
+                            <p><i class="fas fa-angle-double-right"></i> {{ blog.primary_heading }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+{% endblock  %}

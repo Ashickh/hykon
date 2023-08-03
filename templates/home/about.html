@@ -1,0 +1,111 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'scss/style-new.css' %}" rel="stylesheet">
+<style>
+.product-tabs__list {
+    display: flex !important;
+}
+</style>
+{% endblock %}
+{% block content %}
+<section class="">
+    <div class="  block m-0 ">
+        <div class="row">
+            <div class="col-12 col-lg-12  ">
+                <div class="block-slideshow__body ">
+                    <div class="block-slideshow__slide  ">
+                        <img src="{{ about_banner_image.get_media_url }}" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home  </a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pb-50">
+    <div class="container page-header__container container leadership-cntr">
+        <div class="block-finder__header text-left about-page">
+            <div class="row">
+                <div class="col-xl-12">
+                    <img src="{{ about_intro_image.get_media_url }}" class="img-fluid js-tilt float-right mob-dis-none ">
+                    <h1 class="block-finder__title"> {{ about_title.value }} </h1>
+                    <div class="block-finder__subtitle">
+                        {{ about_description.value|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block cat-list">
+            <div class="row">
+                <div class="col-12 col-lg-5 mob-dis-none ">
+                    <img src="{{ about_mission_image.get_media_url }}" class="img-fluid">
+                </div>
+                <div class="col-12 col-lg-7">
+                    <div class="block-banner__body">
+                        <h3 class="block-banner__title">{{ about_mission_title.value }}</h3>
+                        <div class="block-banner__text"><p>{{ about_mission_desc.value|safe }}</p></div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 web-dis-none mob-dis-block ">
+                    <img src="{{ about_mission_image.get_media_url }}" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="block cat-list list-rht  ">
+            <div class="row">
+                <div class="col-12 col-lg-7  ">
+                    <div class="block-banner__body">
+                        <h3 class="block-banner__title">{{ about_vision_title.value }}</h3>
+                        <div class="block-banner__text">{{ about_vision_desc.value|safe }}</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5  ">
+                    <img src="https://www.hykonindia.com/uploads/settings/side-image-vision5f3e11cd73495.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="tabs-sec">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Why Hykon ?</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Highlights</button>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content news-events row " id="pills-tabContent">
+            <div class="tab-pane row fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="typography">
+                    {{ why_hykon.value|safe }}
+                </div>
+            </div>
+            <div class="tab-pane row col-md-4 fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="typography">
+                    {{ about_highlights.value|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+{% endblock  %}

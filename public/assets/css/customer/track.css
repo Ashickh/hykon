@@ -1,0 +1,326 @@
+
+a{
+    text-decoration: none;
+}
+/* li.nav-item.nav-item--active a {
+    border-left: 1px solid;
+} */
+.dashboard-container ul li{
+    list-style: none;
+    padding: 5px 26px;
+}
+.dashboard-container ul{
+   padding-left: 0;
+}
+.dashboard-container ul li a{
+    text-decoration: none;
+    color: #6c757d;
+}
+.dashboard-menu{
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+}
+.dashboard-head{
+    font-size: 20px;
+    padding: 24px 26px 0;
+    margin-bottom: 1rem;
+    color: #3d464d;
+    font-weight: 700;
+}
+.dashboard-container ul li a:active{
+    color: #000;
+}
+.dashboard-detail .dashboard-card{
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+    text-align: center;
+    padding: 2.6rem;
+}
+.dashboard-user-name{
+    font-weight: 500;
+    line-height: 20px;
+    color:#3d464d ;
+}
+.dashboard-user-email{
+    font-size: 15px;
+    margin-bottom: 24px;
+}.detail-card {
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+}
+.detail-wrapper {
+    padding: 2rem;
+}
+.shipping-details h5 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3d464d;
+}
+.shipping-details h6 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #3d464d;
+}
+.shipping-details p {
+    font-size: 18px;
+    color: #3d464d;
+    margin-bottom: 5px;
+}
+.detail-card {
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+}
+.media {
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+.media-body {
+    margin-left: 20px;
+}
+.media-body a {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    color: #343a40;
+}
+.media-body p{
+    font-size: 15px;
+    font-weight: 400;
+}
+.media-body p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6c757d;
+}
+.dashboard-container ul {
+    padding-left: 0;
+}
+.progress-tracker {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0px 50px;
+    padding: 0;
+    list-style: none;
+}
+.dashboard-container ul li {
+    list-style: none;
+    padding: 5px 26px;
+}
+.progress-step {
+    flex: 1 1 11% !important;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+    margin: 0;
+    padding: 0;
+    min-width: 24px;
+}   
+.detail-body .order-cancel{
+    color: #4370b5;
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+    margin-right: 10px;
+}
+.detail-body{
+    padding: 20px 10px;
+    border-bottom:1px solid #f0f0f0;
+}
+.active-tl:after {
+    background: #4370b5 !important;
+}
+.timeline li{
+    list-style: none;
+    float: left;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+.timeline li:hover::before {
+    background: #5ca6e2;
+}
+  .timeline li:before{
+    counter-increment: test;
+    content: attr(data-text);
+    width: 15px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 auto 10px auto;
+    color: #000;
+    transition: all ease-in-out .3s;
+    cursor: pointer;
+  }
+  
+  .timeline li:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color:#ccc;
+    top: 11px;
+    left: -50%;
+    z-index: -999;
+    transition: all ease-in-out .3s;
+  }
+  
+  .timeline li:first-child:after{
+    content: none;
+  }
+  .timeline li.active-tl{
+    color: #000;
+  }
+  .timeline li.active-tl:before{
+    background: #4370b5;
+    color: #F1F1F1;
+  }
+  
+  .timeline li.active-tl + li:after{
+    background: #ccc;
+  } 
+  .tracker ul li{
+    padding: 6px 0 !important;
+  }
+  .tracker ul{
+    margin: 0;
+  }
+  @media only screen and (max-width:600px){
+    .order-detail-box{
+        width: 100%;
+    }
+    .detail-wrapper {
+        padding: 1.5rem;
+    }
+    .progress-title{
+        font-size: 12px;
+    }
+  }
+
+
+  @media only screen and (max-width:600px){
+    .cancel-order-container {
+        left: 7px !important;
+        width: 96% !important;
+    }
+  }
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .cancel-order-container {
+        left: 20% !important ;
+        width: 100% !important;
+    }
+}
+.cancel-order-container{
+top: 10%;
+left: 38%;
+width: 100%;
+max-width:500px;
+position: absolute;
+text-align: center;
+background-color: #fff;
+box-shadow: 0 1px 20px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.15);
+border: 0;
+border-radius: 2px;
+padding: 20px;
+}
+.cancel-modal-header{
+display: flex;
+justify-content: space-between;
+}
+h5.cancel-modal-title {
+margin-bottom: 0;
+font-weight: 700;
+color: #3d464d;
+}
+#CancelFrm .form-group label {
+    padding: 10px 0;
+    /* float: left; */
+    font-size: 16px;
+}
+#CancelFrm .form-group{
+    text-align: left;
+}
+#CancelFrm select#cancelReasonInput {
+    border-radius: 0;
+}
+#CancelFrm .form-group button.btn-primary{
+    margin: 20px 0 25px;
+    border-radius: 0;
+    border-color: #4370b5;
+    background: #4370b5;
+    color: #fff;
+    fill: #fff;
+    padding: 6px 16px;
+}
+#CancelFrm .form-group button.btn-primary:hover{
+border-color: #3d464d;
+background: #3d464d;
+color: #fff;
+fill: #fff;
+}
+.hidden-textarea {
+    text-align: left;
+    padding: 20px 0 0;
+}
+.hidden-textarea label{
+    padding: 10px 0;
+}
+.hidden-textarea  textarea{
+    border-radius: 0;
+}
+.cancel-order-container a.close-popup{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    color: #ccc;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: cursive;
+}
+.cancel-order-container a.close-popup:hover{
+    color:#3d464d ;
+}
+#CancelFrm .clear-value{
+    text-align: right;
+}
+#CancelFrm select option{
+    padding: 10px 0;
+    margin: 10px 0;
+}
+.select-with-clear {
+    position: relative;
+}
+
+.clear-button {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    bottom: 0;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: cursive;
+    font-weight: 700;
+    font-size: 14px;
+    color:#3d464d ;
+}
+.hidden-textarea {
+    padding: 0 13px;
+}
+#CancelFrm .form-group button.btn-primary{
+    margin:0;
+}
+#CancelFrm .form-group label{
+    padding:0;
+}
+
+/* .timeline li.active-tl:before,
+.timeline li.active-tl:after {
+  background-color: blue;
+} */

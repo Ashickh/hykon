@@ -1,0 +1,184 @@
+/*/////////////////////////// Chairman /////////////////////////// */
+@media (max-width: 760px) {
+  .messages-cntr {
+    background-color: white !important;
+  }
+  .mob-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .fst {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .scd {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
+.block-banner_title {
+  color: #008DD2 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  padding-bottom: 10px;
+}
+
+.block-banner_text {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: justify;
+  color: #222222;
+  margin-top: 24px;
+  padding-bottom: 10px;
+}
+
+.messages-content b {
+  float: right;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #000000;
+}
+
+.messages-content p {
+  float: right;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #444444;
+  margin-left: 36%;
+}
+
+.messages-cntr {
+  background-color: #CCE8F6;
+}
+
+.messages-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.chirman {
+  margin-top: 65px;
+}
+
+/*/////////////////////////// clients ///////////////////////////*/
+.sec_ptb_130 {
+  padding: 60px 0px;
+}
+
+@media (min-width: 992px) {
+  .sec_ptb_130 {
+    padding: 130px 0px;
+  }
+}
+
+.space-30 {
+  padding-bottom: 30px;
+}
+
+@media (max-width: 760px) {
+  .block-brands__item a img {
+    width: 100%;
+  }
+}
+
+.block-brands__item a img {
+  /* filter: url(filters.svg#grayscale);
+    Firefox 3.5+ */
+  filter: gray;
+  /* IE5+ */
+  -webkit-filter: grayscale(1);
+  /* Webkit Nightlies & Chrome Canary */
+  -webkit-transition: all .8s ease-in-out;
+}
+
+.block-brands__item a img:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  -webkit-transform: scale(1.1);
+}
+
+.clients-wrapper span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  color: #000000;
+  padding-bottom: 50px;
+  display: block;
+}
+
+.updates {
+  position: relative;
+  background-image: url("../../images/bg/graphic.png");
+  background-size: auto;
+  background-position: bottom;
+}
+
+.updates-top h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 33px;
+  line-height: 40px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.updates-top p {
+  color: #fff;
+  max-width: 783px;
+  margin: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.updates-top {
+  margin-bottom: 96px;
+}
+
+.updates-item img {
+  vertical-align: middle;
+  border-style: none;
+  margin: auto;
+  width: 48px;
+}
+
+.updates-item h4 {
+  width: 200px;
+  height: 19px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  margin: 24px auto 16px auto;
+}
+
+.updates-item p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px !important;
+  line-height: 21px;
+  text-align: center;
+  width: 200px;
+  margin: auto;
+  color: #fff;
+}
+/*# sourceMappingURL=index.css.map */

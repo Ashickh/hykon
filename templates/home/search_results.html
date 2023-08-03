@@ -1,0 +1,90 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %} {{ product_list.products.browser_title }} {% endblock title %}
+{%block content%}
+
+<section>
+  <div class="page-header">
+      <div class="page-header__container container">
+          <div class="page-header__breadcrumb">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item ">
+                          <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home  </a>
+                          <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">Search</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</section>
+
+<body>
+
+  {% if product_list %}
+  <div class="container">
+    <h4>Search results for {{query}}</h4></div>
+  {% else %}
+  <div class="container">
+  <h4>Sorry..!! No results for {{query}}</h4></div>
+  {%endif%}
+
+
+
+  {%for prod in product_list%}
+  
+    <div class="container">
+
+     
+     
+
+    <div class="card mb-2" style="max-width: 1080px;">
+        <div class="row g-0">
+
+         
+
+          <div class="col-md-4" >
+            <div class="product-card__badge product-card__badge--new">{{prod.products.product_name}}</div>
+            <img src="{{prod.image.get_file_path }}" class="img-fluid rounded-start" alt="..." style="height: 250px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+
+              <h4 class="card-title">{{prod.name}}</h4>
+              <h6 class="card-title"></h5>
+               
+                {% with prod|get_price_of_product as price %}
+                
+                <h6 class="card-title">MRP : {{price.new_sale_price}}/-</h5>
+                  {%endwith%}
+               
+              {%for var in product_variant%}
+              
+              <a href="">{{var.name}}</a>
+              {%endfor%}
+            
+              {% csrf_token %}
+              <a href="{%url 'product-detail' prod.slug%}">
+              <button type="submit" class="btn btn-primary btn-md hy-button-booknow">Book Now</button></a>
+
+              <a href="{%url 'product-detail' prod.slug%}">
+                <button type="submit" class="btn btn-primary btn-md hy-button-booknow">View Details</button></a>
+             
+            </div>
+          </div>
+        </div>  
+      </div>
+      </div>
+         
+      
+      
+     
+
+  
+  {%endfor%}
+</body>
+
+{% endblock  %}

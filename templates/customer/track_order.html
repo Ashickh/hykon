@@ -1,0 +1,128 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block current_page %} Track Order {% endblock %}
+{% block account_header %}Track Order{% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/customer/track.css' %}">
+{% endblock %}
+{% block customer_account %}
+{{ block.super }}
+<div class="detail-card mb-2">
+    <div class="detail-wrapper">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shipping-details">
+                    <h5>Delivery Address</h5>
+                    <h6>{{ order.delivery_address_id.full_name }}</h6>
+                    <p>
+                        {{ order.delivery_address_id.address1 }}, {{ order.delivery_address_id.address2 }}, {{ order.delivery_address_id.city }}, {{ order.delivery_address_id.state.name }}, {{ order.delivery_address_id.pincode }}
+                    </p>
+                    <p>Phone Number +91 8907423293</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h6>{{ order.order_reference_number }}</h6>
+                <p>Order Placed on {{ order.created_at|date:"j M, Y" }} {{ order.created_at|time:"g:i A" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="detail-card">
+    {% with order|get_order_tracking as order_tracking %}
+    {% for tracking in order_tracking %}
+    <div class="detail-body">
+        {% if tracking.order_status_labels_master.name not in cancelled %}
+        <a href="#" class="order-cancel" onclick="return openDialog();">Cancel</a>
+        {% endif %}
+        <div class="modal" id="cancel" style="display: none;">
+            <div class="cancel-order-container">
+                <div class="cancel-modal-header">
+                    <h5 class="cancel-modal-title">Cancel Order</h5>
+                    <a class="close-popup" href="#" onclick="closeDialog();">X</a>
+                </div>
+                <hr>
+                <form action="{% url 'customer-order-track' order.id %}" id="CancelFrm" method="post" class="form-horizontal style-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Cancel Type</label>
+                        <div class="select-with-clear">
+                            <input type="hidden" value="{{tracking.order_details.id}}" name="sub_order">
+                            <select onchange="showTextArea()" class="form-control select2_input w-100" placeholder="Select Cancel Reason" name="cancelled_reason" id="cancelReasonInput">
+                                {% for reason in cancel_reasons %}
+                                    <option value="{{reason.title}}">{{reason.title}}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="button" onclick="clearSelect()" class="clear-button">x</button>
+                        </div>
+                    </div>
+                    <div class="form-group hidden-textarea" id="specify-reason-section" style="display: none;">
+                        <label>Specify Reason</label>
+                        <textarea class="form-control" name="other_reason" id="other_reason"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" id="cancel-reason-save-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="order-detail-wrapper">
+            <div class="row order-detail-box">
+                <div class="col-md-5 col-12">
+                    <div class="media p-3">
+                        <img src="{{ tracking.order_details.products.get_image_path }}" style="max-width:75px">
+                        <div class="media-body">
+                            <a href="{% url 'product-detail' tracking.order_details.products.slug %}">{{ tracking.order_details.products.name }}</a>
+                            <p class="media-name"><small>Quantity: {{ tracking.order_details.quantity }}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-12">
+                    <div class="tracker" id="timeline">
+                        <ul class="timeline progress-tracker mt-4">
+                            <li id="orderPlace" class="progress-step active-tl" value="placed">
+                                <p class="progress-title">Placed</p>
+                            </li>
+                            {% if tracking.order_status_labels_master.name in cancelled %}
+                                <li class="progress-step {% if tracking.order_status_labels_master.display_order >= 7 %}active-tl{% endif %}">
+                                    <p class="progress-title">	Requested for Cancel</p>
+                                </li>
+                                <li class="progress-step {% if tracking.order_status_labels_master.display_order >= 8 %}active-tl{% endif %}" >
+                                    <p class="progress-title">Cancelled</p>
+                                </li>
+                            {% else %}
+                            <li id="orderProcess" class="progress-step {% if tracking.order_status_labels_master.display_order >= 2 %}active-tl{% endif %}"  value="processing">
+                                <p class="progress-title">Processing</p>
+                            </li>
+                            
+                            <li id="orderShip" class="progress-step {% if tracking.order_status_labels_master.display_order >= 3 %}active-tl{% endif %}"  value="shipped">
+                                <p class="progress-title">Shipped</p>
+                            </li>
+                            <li id="orderDeliver" class="progress-step {% if tracking.order_status_labels_master.display_order >= 4 %}active-tl{% endif %}"  value="completed">
+                                <p class="progress-title">Completed</p>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endwith %}
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+    function openDialog(){
+        document.getElementById("cancel").style.display="block";
+        return false;
+    }
+    function closeDialog(){
+        document.getElementById("cancel").style.display="none";
+    }
+</script>
+<script src="{% static 'js/order/track.js' %}"></script>
+{% endblock %}

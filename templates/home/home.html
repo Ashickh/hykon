@@ -1,0 +1,464 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block content %}
+<section class="site-banner d-block">
+    <div class="row">
+        <div class="owl-wrapper relative">
+            <div class="hero_slider owl-carousel mob owl-theme">
+
+                <div class="item ">
+                    <img src="{% static 'images/banner/724x744-mobile-version-25f716d6f28822.webp' %}"
+                         alt="...">
+                </div>
+                <div class="item ">
+                    <img src="{% static 'images/banner/724x744-mobile-version-25f716d6f28822.webp' %}"
+                         alt="...">
+                </div>
+            </div>
+            <div class="hero_slider desk owl-carousel owl-theme">
+                <div class="item ">
+                    <img src="{% static 'images/banner/1920x826-e-auto-web-banners6077f5ae3b50e.jpg' %}" class=""
+                         alt="...">
+                </div>
+                <div class="item ">
+                    <img src="{% static 'images/banner/1920x826-web-banner-15f6f04a0aefb2.webp' %}" class=""
+                         alt="...">
+                </div>
+                <div class="item ">
+                    <img src="{% static 'images/banner/1920x826-web-banner-2-25f6f04d1443b7.webp' %}" class=""
+                         alt="...">
+                </div>
+                <div class="item ">
+                    <img src=".{% static 'images/banner/1920x826-web-banner-45f6f04fb65a82.webp' %}" class=""
+                         alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="showcase-slider sec_ptb_80">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h2 class="title">
+                    Experience best quality & Premium products - Hykon India
+                </h2>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="owl-header">
+                <div class="owl-title">
+                    Domestic
+                </div>
+                <p>
+                    Experience best quality & Premium products - Hykon India
+                </p>
+            </div>
+            <div class="show_case domestic owl-carousel owl-theme carousel-wrap" data-aos="fade-right" data-aos-duration="1000">
+                {% for domestic in domestics %}
+                <div class="item">
+                    <div class="post-card"  >
+                        <a href="https://www.hykonindia.com/solar-water-heater" data-checked="true"
+                        >
+                        </a>
+                        <div class="post-card__image">
+                            <a href="{% url 'category' domestic.slug %}" data-checked="true" data-link-updated="#">
+                                <div class="inner-block">
+                                    <div class="slider-top-right"></div>
+                                </div>
+                            </a>
+                            <a href="{% url 'category' domestic.slug %}" data-checked="true" data-link-updated="#">
+                                <img src="{{ domestic.get_banner_image_path }}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-card__info">
+                            <div class="post-card__category d-none">
+                                <a href="#" data-checked="true" data-link-updated="#">Special Offers</a>
+                            </div>
+                            <div class="post-card__name" >
+                                <a href="{% url 'category' domestic.slug %}" data-checked="true" data-link-updated="#">{{ domestic.category_name }}</a>
+                            </div>
+                            <div class="post-card__content">
+                                {{ domestic.page_title }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="row mb-4 owl-container">
+            <div class="owl-header">
+                <div class="owl-title">
+                    Corporate
+                </div>
+                <p>
+                    Experience best quality & Premium products - Hykon India
+                </p>
+            </div>
+            <div class="show_case corporate owl-carousel owl-theme carousel-wrap" data-aos="fade-left" data-aos-duration="1000">
+                {% for corporate in corporates %}
+                <div class="item">
+                    <div class="post-card"  >
+                        <a href="https://www.hykonindia.com/solar-water-heater" data-checked="true"></a>
+                        <div class="post-card__image">
+                            <a href="{% url 'category' corporate.slug %}" data-checked="true" data-link-updated="#">
+                                <div class="inner-block">
+                                    <div class="slider-top-right"></div>
+                                </div>
+                            </a>
+                            <a href="{% url 'category' corporate.slug %}" data-checked="true" data-link-updated="#">
+                                <img src="{{ corporate.get_banner_image_path }}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-card__info">
+                            <div class="post-card__category d-none">
+                                <a href="#" data-checked="true" data-link-updated="#">Special Offers</a>
+                            </div>
+                            <div class="post-card__name" >
+                                <a href="{% url 'category' corporate.slug %}" data-checked="true" data-link-updated="#">{{ corporate.category_name }}</a>
+                            </div>
+                            <div class="post-card__content">
+                                {{ corporate.page_title }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="sec_ptb_80 updates">
+    <div class="container">
+        <div class="row updates-top">
+            <h3>{{ hl_values.hl_title.value }}</h3>
+            <p>{{ hl_values.hl_description.value }}</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center updates-item">
+                <img src="{{ hl_values.hl_s1_icon.get_media_url }}">
+                <h4>{{ hl_values.hl_s1_title.value }}</h4>
+                <p>{{ hl_values.hl_s1_summary.value }}</p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center updates-item">
+                <img src="{{ hl_values.hl_s2_icon.get_media_url }}">
+                <h4>{{ hl_values.hl_s2_title.value }}</h4>
+                <p>{{ hl_values.hl_s2_summary.value }}</p>
+            </div>
+            <div class="col-lg-3  col-md-6 col-sm-12 text-center updates-item">
+                <img src="{{ hl_values.hl_s3_icon.get_media_url }}">
+                <h4>{{ hl_values.hl_s3_title.value }}</h4>
+                <p>{{ hl_values.hl_s3_summary.value }}</p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center updates-item">
+                <img src="{{ hl_values.hl_s4_icon.get_media_url }}">
+                <h4>{{ hl_values.hl_s4_title.value }}</h4>
+                <p>{{ hl_values.hl_s4_summary.value }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="latest-news sec_ptb_80">
+    <div class="container">
+        <div class="row">
+            <h2 class="news-section-title">
+                latest News
+            </h2>
+        </div>
+        <div class="row">
+            <div class="latestNews owl-carousel owl-theme">
+                {% for blog in Blogs %}
+                <div class="item" >
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="news_image">
+                                <img class="img-fluid"
+                                     src="{{ blog.get_media_url }}"
+                                     alt="...">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="news-content">
+                                <div class="news-title">
+                                    {{ blog.primary_heading }}
+                                </div>
+                                <div class="news-date">
+                                    {{ blog.created_at|date:"d F Y"|upper }}
+                                </div>
+                                <div class="news-description">
+                                    {{ blog.short_description }}
+                                    <a href="" class="d-md-none">Read more</a>
+                                </div>
+                                <div class="mt-4 d-none  d-md-flex justify-content-end ">
+                                    <button type="button" class="btn btn-outline-primary btn-read-more"><a href="{% url 'blog' blog.slug %}">Read more</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="counter">
+    <div class="container">
+        <div class="row features mb-5">
+            <div class="col-6 col-md-3"  >
+                <h2 data-comma="true" class="timer counter-number" data-to="1991" data-speed="1500">{{ hl_values.start_up.value }}</h2>
+                <br>
+                <span>Start Up</span>
+            </div>
+            <div class="col-6 col-md-3"  >
+                <h2 class="timer counter-number"   data-to="450" data-speed="1500">{{ hl_values.employees.value }}</h2>
+                <h2 class="counter-number">+</h2>
+                <br>
+                <span>Employees</span>
+            </div>
+            <div class="col-6 col-md-3"  >
+                <h2 class="timer counter-number" data-to="5" data-speed="1500">{{ hl_values.companies.value }}</h2>
+                <br>
+                <span>Companies</span>
+            </div>
+            <div class="col-6 col-md-3"  >
+                <h2 class="timer counter-number" data-to="100" data-speed="1500">{{ hl_values.crore_turnover.value }}</h2>
+                <h2 class="counter-number">+</h2>
+                <br>
+                <span>Crore Turnover</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="block-banner messages-cntr">
+        <div class="container">
+            <div class="row m-0 mob-top">
+                <div class="col-md-7  messages-content fst">
+                    <div class="container">
+                        <div class="block-banner__body">
+                            <div class="block-banner_title">{{ hl_values.cmd_message_title.value }}</div>
+                            <div class="block-banner_text">{{ hl_values.cmd_message_description.value }}
+                            </div>
+                        </div>
+                        <b class="message-name">Christo George</b><br>
+                        <p class="message-designation">Chairman &amp; Managing Director, Hykon India Ltd</p>
+                    </div>
+                </div>
+                <div class="col-md-5 p-0 text-center scd">
+                    <img src="{{ hl_values.cmd_image.get_media_url }}" class="img-fluid chirman" width="400">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="award sec_ptb_80 pb-120">
+    <div class="container" data-aos="fade-right" data-aos-duration="1000">
+        <div class="row">
+            <div class="section-title">
+                Awards and Recognitions
+            </div>
+            <div class="sub-title mb-4">
+                Hykon is proud to be recognized and felicitated by some of the most influential and highly esteemed organizations, in India and globally. These awards are a token of honours that we have amassed through maintaining outstanding quality and being a business model that keeps on improvising without fail.
+            </div>
+        </div>
+        <div class="row">
+            <div class="awards owl-carousel owl-theme">
+                {% for award in awards %}
+                <div class="item">
+                    <div class="award">
+                        <div class="award-img text-center d-flex align-items-center justify-content-center">
+                            <img class="img-fluid" src="{{ award.get_media_url }}" alt="..">
+                        </div>
+                        <p class="award-name text-white mt-2">
+                            {{ award.alt_text }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sec_ptb_80">
+    <div class="block block-brands clients">
+        <div class="container"  >
+            <div class="clients-wrapper">
+                <span>We Are Happy To Serve</span>
+                <div class="row">
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client3.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client2.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client1.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                    <div class="space-30"></div>
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client6.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client4.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-4">
+                        <div class="block-brands__item">
+                            <a href="javascript:void(0)"><img src="{% static 'images/clients/client5.jpg' %}"
+                                                              alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!--<section>-->
+<!--    <div class="block block-banner store" >-->
+<!--        <div class="container">-->
+<!--            <div class="block-banner__title"> Store Near You </div>-->
+<!--            <form class="row">-->
+<!--                <div class=" col-12 col-md-3 mb-2">-->
+<!--                    <div class="form-group">-->
+<!--                        <select class="js-example-basic-single form-control" name="state">-->
+<!--                            <option value="AL">Alabama</option>-->
+<!--                            <option value="WY">Wyoming</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-2">-->
+<!--                    <div class="form-group">-->
+<!--                        <select class="js-example-basic-single form-control " name="district">-->
+<!--                            <option value="AL">Alabama</option>-->
+<!--                            <option value="WY">Wyoming</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class=" col-12 col-md-3 mb-2">-->
+<!--                    <div class="form-group">-->
+<!--                        <select class="js-example-basic-single form-control " name="dealers">-->
+<!--                            <option value="AL">Alabama</option>-->
+<!--                            <option value="WY">Wyoming</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-3 mb-2">-->
+<!--                    <div class="form-group">-->
+<!--                        <button type="button"  class="btn btn-primary ml30 mb-2 cl-4 btn-search"><span>-->
+<!--                   Search </span></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
+
+
+<!--            <div class="row mt-3" id="branch_results">-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/pune/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Pune</b>-->
+<!--                            <p>Hykon India Limited,-->
+<!--                                Alandi Fata, Kurali,-->
+<!--                                412105<br>Call 91-75949 00099-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-ss-enterprises/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>SS Enterprises</b>-->
+<!--                            <p>Falton, Satara ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-soham-enterprises/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Soham Enterprises</b>-->
+<!--                            <p>Udgir, Latur ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-adtiya-power-system/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Adtiya Power System</b>-->
+<!--                            <p>Pune, Pune ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-solar-works-solution/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Solar Works Solution</b>-->
+<!--                            <p>Pune, Pune ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-balaji-traders/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Balaji Traders</b>-->
+<!--                            <p>Kaputhol,  Tal- Bhor, Pune ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-shrisolar/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>ShriSolar</b>-->
+<!--                            <p>Pune, Pune ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <a href="https://www.hykonindia.com/store-locator/dealer-nilesh-agencies/">-->
+<!--                        <div class="branch-results">-->
+<!--                            <b>Nilesh Agencies</b>-->
+<!--                            <p>Rashin, Ahmednagar ,Maharashtra</p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+{% endblock  %}
+{% block javascripts %}
+<script>
+    AOS.init({
+        disable: function() {
+          var maxWidth = 10;
+          return window.innerWidth < maxWidth;
+        }
+      });      
+</script>
+
+{% endblock  %}

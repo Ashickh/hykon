@@ -1,0 +1,106 @@
+{% extends 'customer/base.html' %}
+{% load crispy_forms_tags %}
+{% block current_page %} Dashboard {% endblock %}
+{% block account_header %}My account{% endblock %}
+{% block customer_account %}
+{{ block.super }}
+<div class="dashboard-detail" id="dashboardDetail">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 dashboard-section" >
+            <div class="dashboard-card">
+                <div class="dashboard-user-name">{{ user.first_name }} {{ user.last_name }}</div>
+                <div class="dashboard-user-email">{{ user.email }}</div>
+                <div class="dashboard-profile-data"><a class="btn btn-secondary btn-sm" href="{% url 'customer-profile' %}">Manage Profile</a></div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 dashboard-section">
+            
+            {% if not default_address %}
+            <div class="add-address">
+                <a class="dashboard-add-address" href="#" onclick="return addpopupFunction();">
+                    <div class="address-list-plus"></div>
+                    <div class="btn btn-secondary btn-sm">Add New Address</div>
+                </a>
+            </div>
+            {% else %}
+            <div class="address-card-box" id="card-body-883">
+                <div class="address-card-badge">Default Address</div>
+                <div class="address-card-data">
+                    <div class="address-card__name">{{ default_address.full_name }}</div>
+                        <div class="address-card-address">
+                            {{ default_address.address1 }}
+                            <br>
+                                {{ default_address.address2 }}
+                            <br>
+                                {{ default_address.city }},
+                                {{ default_address.state.name }},
+                                {{ default_address.pincode }}
+                        </div>
+                        <div class="address-card-phone">
+                            <div class="address-card-title">Phone Number</div>
+                            <div class="address-card-phone-content">{{ default_address.mobile_code }} {{ default_address.mobile_number }}</div>
+                        </div>
+                        <div class="address-card-address">
+                            <div class="address-card-title">Address Type</div>
+                            <div class="address-card-content">{{ default_address.get_type_display }}</div>
+                        </div>
+                        <div class="card-edit-link">
+                            <a class="edit" href="#" onclick="return popupFunction();">Edit
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="modal" id="addpopupForm" class="popup-form">
+                <div class="modal-content">
+                  <div class="modal-head">
+                      <div class="modal-head-sec">
+                          <h5 class="modal-title">Add New Address</h5>
+                          <a class="close-popup" href="#" onclick="closePopupFunction()">X</a>
+                      </div>
+                          <div class="modal-body">
+                              <form id="warranty_form mt-4" action="{% url 'customer-dashboard' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    {% for field in form %}
+                                        {{ field | as_crispy_field }}
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-5 mb-5">
+                                    <button id="update_fitness_center" type="submit" class="btn btn-primary ml-5">Submit</button>
+                                </div>
+                            </form>
+                          </div>
+                         
+                      </div>
+                  </div>
+              </div>
+            <div class="modal" id="popupForm" class="popup-form" style="display:none">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <div class="modal-head-sec">
+                            <h5 class="modal-title">Edit Address</h5>
+                            <a class="close-popup" href="#" onclick="closePopupForm()">X</a>
+                        </div>
+                            <div class="modal-body">
+                                <form id="" action="{% url 'customer-dashboard' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        {% for field in edit_form %}
+                                            {{ field | as_crispy_field }}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="mt-5 mb-5">
+                                        <button id="update_address" type="submit" class="btn btn-primary ml-5">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

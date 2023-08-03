@@ -1,0 +1,108 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+ 
+   
+     
+      <!-- Table -->
+      <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Order Details</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                
+             
+                
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                       
+                         
+                        <div class="media-body">
+                          
+                          <span class="mb-0 text-sm"><a href=""></a></span>   
+                        </div>
+                         
+                      </div>
+                    </th>
+                    
+                    <td>
+                      <span class="">
+                        <i class="bg-warning"></i> {{ord.status}}
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="">
+                        <i class="bg-warning"></i> {{ord.total_sale_price}}
+                      </span>
+                    </td>
+
+                    
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">{{ord.total_final_price}}</span>   
+                       
+                      </div>
+                    </td>
+                   
+                  
+                </tbody>
+                
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                       
+                         
+                        <div class="media-body">
+                          
+                          <span class="mb-0 text-sm"><a href="">{{ord.transaction_id}}</a></span>   
+                        </div>
+                         
+                      </div>
+                    </th>
+                    
+                    <td>
+                      <span class="">
+                        <i class="bg-warning"></i> {{ord.status}}
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="">
+                        <i class="bg-warning"></i> {{ord.total_sale_price}}
+                      </span>
+                    </td>
+
+                    
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-2">{{ord.total_final_price}}</span>   
+                       
+                      </div>
+                    </td>
+                   
+                  
+                </tbody>
+                {%endfor%}
+              </table>
+            </div>
+           
+      
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+{% endblock %}
+</html>

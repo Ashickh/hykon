@@ -1,0 +1,150 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home  </a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">News and Events </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pb-100">
+    <div class="container events">
+        <h2 class="text-center pb-30">{{ event.primary_heading }}</h2>
+        <img class="main-img" src="{{ event.get_media_url }}">
+        <div class="row pb-50">
+            <div class="col-12 event-text">
+                <h2>About event</h2>
+                {{ event.content|safe }}
+            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="video-player" >-->
+<!--                    <div id="video-player">-->
+<!--                        <video id="main-video" controls>-->
+<!--                            <source src="./assets/images/video/HTML.mp4" type="video/mp4">-->
+<!--                        </video>-->
+<!--                        <div id="video-overlay">-->
+<!--                            <div id="video-overlay-play-button"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div class="tab-content news-events row " >
+            <h3>More Events</h3>
+        </div>
+        <div class="row">
+            <div class="news-detail owl-carousel owl-theme carousel-wrap">
+                {% for event_obj in more_events %}
+                <div class="item">
+                    <div class="events-list">
+                        <a href="{% url 'event' event_obj.slug %}"> <img class="slider-eve-img" src="{{ event_obj.get_media_url }}"></a>
+                        <span class="slider-eve-date">{{ event_obj.event_date_time|date:"Y" }}&nbsp;<i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        <h6 class="eve-slider-head">{{ event_obj.primary_heading }}</h6>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="eve-share pb-100">
+        <div class="news-share container">
+            <span class="share-heading">Share Now &nbsp;<i class="fa fa-share" aria-hidden="true"></i></span>
+            <div class="footer-newsletter__social_links">
+                <span class="footer-newsletter__social-link footer-newsletter__social-link">
+                    <a class="clone" href="#" id="copy-link" target="_blank" data-checked="false" onclick="return copy()"><i class="fa fa-clone" aria-hidden="true"></i></a>
+                </span>
+                <span class="footer-newsletter__social-link footer-newsletter__social-link--facebook">
+                    <a class="facebook " href="https://www.facebook.com/login.php?skip_api_login=1&api_key=338179464269729&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv10.0%2Fdialog%2Fshare%3Fchannel%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df3d035feae48e8%2526domain%253Dwww.hykonindia.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.hykonindia.com%25252Ff2a670930c8ce4c%2526relation%253Dopener%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df8684b81071658%2526domain%253Dwww.hykonindia.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.hykonindia.com%25252Ff2a670930c8ce4c%2526relation%253Dopener%2526frame%253Df34ef444be6e9e8%2526result%253D%252522xxRESULTTOKENxx%252522%26display%3Dpopup%26href%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Fnews%252Fhykon-launching-electric-auto-in-2021%26client_id%3D338179464269729%26ret%3Dlogin%26sdk%3Djoey%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Fnews%252Fhykon-launching-electric-auto-in-2021&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df8684b81071658%26domain%3Dwww.hykonindia.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.hykonindia.com%252Ff2a670930c8ce4c%26relation%3Dopener%26frame%3Df34ef444be6e9e8%26result%3D%257B%2522error_code%2522%253A4201%252C%2522error_message%2522%253A%2522User%2Bcanceled%2Bthe%2BDialog%2Bflow%2522%257D%26error_code%3D4201%26error_message%3DUser%2Bcanceled%2Bthe%2BDialog%2Bflow%26e2e%3D%257B%257D&display=popup&locale=en_GB" target="_blank" data-checked="false"><i class="fab fa-facebook-f"></i></a>
+                </span>
+                <span class="footer-newsletter__social-link footer-newsletter__social-link--twitter">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=Hykon%20launching%20%27electric%20auto%27%20in%202021%20https://www.hykonindia.com/news/hykon-launching-electric-auto-in-2021%20&hashtags=hykon" target="_blank" data-checked="false"><i class="fab fa-twitter"></i></a>
+                </span>
+                <span class="footer-newsletter__social-link footer-newsletter__social-link--pinterest">
+                    <a class="pinterest" href="https://in.pinterest.com/pin-builder/?description=Hykon+launching+%27electric+auto%27+in+2021&guid=euuz8zU7M9y4-1&media=https%3A%2F%2Fwww.hykonindia.com%2Fuploads%2Fmedia%2F1280x85360795cbb82a21.png&method=button&url=https%3A%2F%2Fwww.hykonindia.com%2Fnews%2Fhykon-launching-electric-auto-in-2021" target="_blank" data-checked="false"><i class="fab fa-pinterest-p"></i></a>
+                </span>
+            </div>
+        </div>
+    </div>
+<section>
+{% endblock  %}
+{% block javascripts %}
+<script>
+    const thumbnails = document.querySelectorAll('#thumbnails img');
+    const mainVideo = document.querySelector('#main-video');
+    const playButton = document.querySelector('#video-overlay-play-button');
+    const videoOverlay = document.querySelector('#video-overlay');
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            const videoSrc = thumbnail.getAttribute('data-video-src');
+            mainVideo.src = videoSrc;
+            mainVideo.load();
+        });
+    });
+
+    playButton.addEventListener('click', () => {
+        mainVideo.play();
+        videoOverlay.style.display = 'none';
+    });
+
+    mainVideo.addEventListener('pause', () => {
+        videoOverlay.style.display = 'flex';
+    });
+</script>
+<script>
+    $('.news-detail').owlCarousel({
+         margin: 20,
+         nav:true,
+         dots:false,
+         responsiveClass: true,
+         responsive: {
+             0: {
+                 items: 1,
+                 stagePadding: 50,
+                 loop:false,
+                 center: true,
+             },
+             600: {
+                 items: 1,
+             },
+             1000: {
+                 items: 4,
+             }
+         }
+    })
+</script>
+<script>
+    function copy() {
+        var currentUrl = window.location.href;
+        var messageEl = document.createElement("div");
+        messageEl.innerHTML = "<i class='fa fa-check-circle'></i> This page URL is copied!";
+        messageEl.classList.add("copy-message");
+        document.body.appendChild(messageEl);
+        var tempInput = document.createElement("input");
+        tempInput.setAttribute("value", currentUrl);
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        setTimeout(function() {
+            document.body.removeChild(messageEl);
+        }, 10000);
+        return false;
+    }
+</script>
+{% endblock  %}

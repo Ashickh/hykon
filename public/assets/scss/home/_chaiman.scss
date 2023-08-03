@@ -1,0 +1,62 @@
+
+
+/*/////////////////////////// Chairman /////////////////////////// */
+
+@media (max-width: 760px) {
+    .messages-cntr{
+        background-color: white!important;
+   }
+    .mob-top{
+       display:flex;
+       flex-direction:column
+   }
+    .fst{
+        order: 2;
+   }
+    .scd{
+        order:1;
+   }
+}
+.block-banner_title {
+    color: #008DD2 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    padding-bottom: 10px;
+}
+.block-banner_text{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: justify;
+    color: #222222;
+    margin-top: 24px;
+    padding-bottom: 10px;
+}
+.messages-content b{
+   float: right;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #000000;
+}
+.messages-content p{
+   float: right;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #444444;
+    margin-left: 36%;
+}
+.messages-cntr {
+    background-color: #CCE8F6;
+}
+.messages-content{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.chirman{
+   margin-top: 87px;
+}

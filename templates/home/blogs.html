@@ -1,0 +1,82 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'scss/blog.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home  </a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pb-100">
+    <div class="container">
+        <div class="index-filter-bar color-scheme-light minimal">
+            <div class="index-sort-w">
+                <div class="index-sort-label"><i class=""></i><span>Order By</span></div>
+                <div class="index-sort-options">
+                    <a href="{% url 'blog' %}?sort=latest" class="index-sort-option index-sort-hearts" data-checked="true" data-link-updated="{% url 'blog' %}?sort=latest">Latest</a>
+                    <a href="{% url 'blog' %}?sort=views" class="index-sort-option index-sort-views" data-checked="true" data-link-updated="{% url 'blog' %}?sort=views">Most Views</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-md-4">
+                <div class="post-blog__single">
+                    <div class="post-media-body">
+                        <div class="figure-link-w">
+                            <a href="{% url 'blog' blog.slug %}" class="figure-link " data-checked="true" data-link-updated="{% url 'blog' blog.slug %}">
+                                <figure class="abs-image">
+                                    <img src="{{ blog.get_media_url }}" class="attachment-pluto" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="post-content-body">
+                        <h4 class="post-title entry-title">
+                            <a href="{% url 'blog' blog.slug %}" data-checked="true" data-link-updated="{% url 'blog' blog.slug %}">{{ blog.primary_heading }}</a>
+                        </h4>
+                        <div class="post-content entry-summary">
+                            <span>{{ blog.short_description }}</span>
+                            <div class="read-more-link">
+                                <a href="{% url 'blog' blog.slug %}" data-checked="true" data-link-updated="{% url 'blog' blog.slug %}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-meta entry-meta td-tm">
+                        <div class="meta-date meta_inner">
+                            <i class="fas fa-clock"></i>
+                            <time class="entry-date updated">{{ blog.created_at|date:"j F" }}</time>
+                        </div>
+                        <div class="meta-like meta_inner">
+                            <a href="#" class="os-like-button" data-checked="false">
+                                <span class="os-like-button-icon">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                                <span class="os-like-button-sub-label osetin-vote-count">{{ blog.views }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+{% endblock  %}

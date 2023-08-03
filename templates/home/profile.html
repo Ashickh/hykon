@@ -1,0 +1,41 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="section1">
+            <h2>Section 1</h2>
+            <p>This is the content for Section 1.</p>
+        </section>
+        <section id="section2">
+            <h2>Section 2</h2>
+            <p>This is the content for Section 2.</p>
+        </section>
+        <section id="section3">
+            <h2>Section 3</h2>
+            <p>This is the content for Section 3.</p>
+        </section>
+    </main>
+</body>
+
+
+
+
+{% endblock  %}
+{% block javascripts %}
+{% endblock  %}

@@ -1,0 +1,28 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+
+
+<div class="card" style="width: 30rem;">
+    <div class="card-header">
+        <h2>Order Tracking</h2>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Product Name : {{track_order.order_details.products.name}}</li>
+      <li class="list-group-item">Quantity : {{track_order.order_details.quantity}}</li>
+      <li class="list-group-item">Price : {{track_order.order_details.price}}</li>
+      <li class="list-group-item">Status of the Order : {{track_order.order_status_labels_master}}</li>
+      <li class="list-group-item">Customer Note : {{track_order.notes}}</li>
+     
+    </ul>
+
+    <div class="card-body">
+        
+        <a href="{%url 'order_details' track_order.id%}" class="card-link">Back</a>
+      </div>
+  </div>
+</body>
+{% endblock %}

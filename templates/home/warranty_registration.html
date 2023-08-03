@@ -1,0 +1,139 @@
+{% extends 'home/index.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>-->
+<!--<link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">-->
+{% endblock css %}
+{% block title %}  {% endblock title %}
+{% block content %}
+<section class="">
+    <div class="row">
+        <div class="col-12 col-lg-12  ">
+            <div class="block-slideshow__body ">
+                <div class="block-slideshow__slide  ">
+                    <h2>Warranty</h2>
+                    <img src="{{ warranty_image.get_file_path }}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pb-50" style="padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form id="warranty_form mt-4" action="{% url 'warranty' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% for field in form %}
+                            {% if field.name not in billing_adresses and field.name not in installation_addresses %}
+                            <div class="col-md-4 ml-5">
+                                {{ field | as_crispy_field }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="mt-4 mb-3">
+                            <h5>Billing Adress</h5>
+                        </div>
+                        {% for field in form %}
+                            {% if field.name in billing_adresses %}
+                            <div class="col-md-4 ml-5">
+                                {{ field | as_crispy_field }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="mt-4 mb-3">
+                            <h5>Installation Adress</h5>
+                        </div>
+                        {% for field in form %}
+                            {% if field.name in installation_addresses %}
+                            <div class="col-md-4 ml-5">
+                                {{ field | as_crispy_field }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="mt-5 mb-5">
+                        <button id="update_fitness_center" type="submit" class="btn btn-primary ml-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!--<script src="{% static 'js/moment.min.js' %}"></script>-->
+<!--<script src="{% static 'js/datetimepicker.js' %}"></script>-->
+<script>
+    $(document).ready(function () {
+        $(".dateinput").datepicker({
+            changeYear: true,
+            yearRange: '1950:' + (new Date().getFullYear() + 2).toString(),
+            dateFormat: 'yy-mm-dd'
+        });
+        $(".dateinput").datepicker().datepicker("setDate", new Date());
+    });
+    $(document).on('change', '#id_billing_pincode', function(){
+        $.ajax({
+            url: "{% url 'pincode' %}",
+            type : "GET",
+            data: {
+                'pincode_id': $(this).val()
+            },
+            success: function (data) {
+                if (data.length == 0){
+                    $('#id_billing_district').val('');
+                    $('#id_billing_state').val('');
+                }else{
+                    $('#id_billing_district').val(data[0].district.id);
+                    $('#id_billing_state').val(data[0].district.state);
+                }
+            }
+        });
+    });
+
+    $(document).on('change', '#id_installation_pincode', function(){
+        $.ajax({
+            url: "{% url 'pincode' %}",
+            type : "GET",
+            data: {
+                'pincode_id': $(this).val()
+            },
+            success: function (data) {
+                if (data.length == 0){
+                    $('#id_installation_district').val('');
+                    $('#id_installation_state').val('');
+                }else{
+                    $('#id_installation_district').val(data[0].district.id);
+                    $('#id_installation_state').val(data[0].district.state);
+                }
+            }
+        });
+    });
+
+    $(document).on('change', '#id_product_type', function(){
+        $.ajax({
+            url: "{% url 'product-models' %}",
+            type : "GET",
+            data: {
+                'product_type': $(this).val()
+            },
+            success: function (data) {
+                $('#id_model').empty();
+                var row = '<option value="" selected="">---------</option>';
+                $.each(data, function(key, value) {
+                    row += '<option value="'+ value.id +'">'+ value.name +'</option>'
+                });
+                $('#id_model').append(row);
+            }
+        });
+    });
+
+</script>
+{% endblock  %}

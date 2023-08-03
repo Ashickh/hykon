@@ -1,0 +1,165 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %} {{ main_category.browser_title }} {% endblock title %}
+{% block content %}
+<section class="">
+    <div class="row">
+        <div class="col-12 col-lg-12  ">
+            <div class="block-slideshow__body ">
+                <div class="block-slideshow__slide  ">
+                    <h2>{{main_category.category_name}}</h2>
+                    <img src="{{ main_category.get_banner_image_path }}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item ">
+                            <a href="{% url 'home' %}" data-checked="true" data-link-updated="{% url 'home' %}">Home</a>
+                            <i class="fa fa-angle-right breadcrumb-arrow" aria-hidden="true"></i>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ main_category.category_name }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section>
+    <div class="container icon_box">
+        <div class="row">
+            <div class="col-3 cat_icons">
+
+            </div>
+        </div>
+    </div>
+</section> -->
+<section class="pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 product-sec">
+                <h2><strong>{{main_category.category_name}}</strong></h2>
+                {{main_category.top_description|safe}}
+                <ul class="ico-sec">
+                    {% for banner in banners %}
+                        <li><img src="{{ banner.get_media_url }}"></li>
+                    {% endfor %}
+                </ul>
+
+                {% if main_category.brochure_pdf.file_path|file_exists:request_obj %}
+                <a class="btn btn-primary btn-pro-custom" href="{{ main_category.get_brochure_pdf_path }}" target="_blank" data-checked="true" data-link-updated="{{ main_category.get_brochure_pdf_path }}"> DOWNLOAD BROCHURE <i class="fa fa-download" aria-hidden="true"></i></a>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6 pt-30">
+                <div class="row">
+                    {% if sub_categories %}
+                        <div class="col-md-6 series">
+                            {% for sub in first_list %}
+                                <ul>
+                                    <li><a href="{{ sub.get_absolute_url }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ sub.category_name }}</a></li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6 series">
+                            {% for sub in second_list %}
+                                <ul>
+                                    <li><a href="{{ sub.get_absolute_url }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ sub.category_name }}</a></li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        {% for category in sub_categories %}
+        <div class="block cat-list aos-init aos-animate" id="its-premium-solar-water-heater">
+            <div class="row">
+                <div class="col-12 col-lg-5 desk">
+                    <div class="product product--layout--standard">
+                        <img src="{{ category.get_thumbnail_image_path }}" class="img-fluid">
+                    </div>
+                    <div class="block-banner__btn-cntr mt-3 text-center">
+                        <a class="btn btn-primary" href="{% url 'products' category.slug %}" data-checked="true" data-link-updated="{% url 'products' category.slug %}"> VIEW PRODUCTS <i class="fas fa-eye"></i></a>
+                        {% if category.brochure_pdf.file_path|file_exists:request_obj %}
+                        <a class="btn btn-secondary" href="{{ category.get_brochure_pdf_path }}" target="_blank" data-checked="true" data-link-updated="{{ category.get_brochure_pdf_path }}"> DOWNLOAD <i class="fa fa-download" aria-hidden="true"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7">
+                    <div class="block-banner__body" >
+                        <h3 class="block-banner__title text-left">{{category.category_name}}</h3>
+                        <div class="block-banner__text">
+                            <div class="pro-listing">
+                                {{category.top_description|safe}}
+                            </div>
+                            <a class="mob" onclick="myFunction()" id="myBtn">Read more </a>
+                        </div>
+                        <div class="product product--layout--standard mob">
+                            <img src="https://www.hykonindia.com/uploads/media/cat-45fcef8b6a710c.jpg" class="img-fluid">
+                        </div>
+                        <p class="pb-2 available"><b>Available options</b>
+                            {% with category|product_of_category as parent_product %}
+                                ({{ parent_product.product_name }})</p>
+                            {% endwith %}
+                        <div class="row">
+                            {% with category|product_of_category as parent_product %}
+                                {% with parent_product|variants_of_product as product_variants %}
+                                    {% for product in product_variants %}
+                                        <div class="col-md-3 col-6">
+                                            <a href="{% url 'product-detail' product.slug %}" data-checked="true" data-link-updated="{% url 'product-detail' product.slug %}">
+                                                <div class="avaiable-capa text-center">
+                                                    <span>{{product.name}}</span>
+                                                    {% with product|get_price_of_product as price %}
+                                                        {% if price.new_sale_price > 0 %}
+                                                        <p>MRP-{{price.new_retail_price}}/-  </p>
+                                                        <h4>{{price.new_sale_price}}/-</h4>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endwith %}
+                        </div>
+                        <div class="block-banner__btn-cntr mt-3 text-center mob">
+                            <a class="btn btn-primary" href="{% url 'products' category.slug %}" data-checked="true" data-link-updated="{% url 'products' category.slug %}"><i class="far fa-file-pdf"></i> VIEW PRODUCTS</a>
+                            {% if category.brochure_pdf.file_path|file_exists:request_obj %}
+                                <a class="btn btn-secondary" href="{{ category.get_brochure_pdf_path }}" target="_blank" data-checked="true" data-link-updated="{{ category.get_brochure_pdf_path }}"><i class="fa fa-download" aria-hidden="true"></i> DOWNLOAD</a>
+                            {% endif %}
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock  %}
+{% block javascripts %}
+<script>
+    AOS.init({
+        disable: function() {
+            var maxWidth = 10;
+            return window.innerWidth < maxWidth;
+        }
+    });
+</script>
+
+
+{% endblock  %}

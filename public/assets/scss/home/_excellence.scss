@@ -1,0 +1,57 @@
+
+.updates {
+    position: relative;
+    background: url(https://www.hykonindia.com/hykon-ui/images/graphic.png) #008dd2;
+    // background-color: $primary;
+    background-size: auto;
+    background-position: bottom;
+   
+}
+.updates-top h3{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 33px;
+    line-height: 40px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #fff;
+}
+.updates-top p {
+    color: #fff;
+    max-width: 783px;
+    margin: auto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+}
+.updates-top {
+    margin-bottom: 96px;
+}
+.updates-item img{
+    vertical-align: middle;
+    border-style: none;
+    margin: auto;
+    width: 48px;
+}
+.updates-item h4 {
+    width: 200px;
+    height: 19px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    margin: 24px auto 16px auto;
+}
+.updates-item p{
+   font-style: normal;
+    font-weight: 400;
+    font-size: 14px !important;
+    line-height: 21px;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    color:#fff 
+}

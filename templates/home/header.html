@@ -1,0 +1,284 @@
+{% load static %}
+<header class="site__header  d-lg-none">
+    <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
+    <div class="mobile-header mobile-header--sticky" data-sticky-mode="pullToShow">
+        <div class="mobile-header__panel ">
+            <div class="container">
+                <div class="mobile-header__body">
+                    <button class="mobile-header__menu-button">
+                        <svg width="18px" height="14px">
+                            <use xlink:href="{% static 'images/sprite.svg#menu-18x14' %}"></use>
+                        </svg>
+                    </button>
+                    <a class="mobile-header__logo" href="https://www.hykonindia.com" data-checked="true" data-link-updated="https://www.hykonindia.com">
+                        <img src="https://www.hykonindia.com/uploads/settings/logo5f0fd3c946235.png" class="" width="150">
+                    </a>
+                    <div class="mobile-header__search">
+                        <form class="mobile-header__search-form" action="https://www.hykonindia.com/search" method="get">
+                            <input class="mobile-header__search-input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
+                            <button class="mobile-header__search-button mobile-header__search-button--submit" type="submit">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="{% static 'images/sprite.svg#search-20' %}"></use>
+                                </svg>
+                            </button>
+                            <button class="mobile-header__search-button mobile-header__search-button--close" type="button">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="{% static 'images/sprite.svg#cross-20' %}"></use>
+                                </svg>
+                            </button>
+                            <div class="mobile-header__search-body"></div>
+                        </form>
+                    </div>
+                    <div class="mobile-header__indicators">
+                        <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
+                            <button class="indicator__button">
+                         <span class="indicator__area">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path d="M10.7248 18.5248C15.0326 18.5248 18.5248 15.0326 18.5248 10.7248C18.5248 6.41698 15.0326 2.9248 10.7248 2.9248C6.41698 2.9248 2.9248 6.41698 2.9248 10.7248C2.9248 15.0326 6.41698 18.5248 10.7248 18.5248Z" stroke="black" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                               <path d="M20.4746 20.4751L16.2334 16.2339" stroke="black" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                         </span>
+                            </button>
+                        </div>
+                        <div class="indicator indicator--mobile">
+                            <a href="https://www.hykonindia.com/cart" class="indicator__button" data-checked="true" data-link-updated="https://www.hykonindia.com/cart">
+                         <span class="indicator__area">
+                            <svg width="20px" height="20px">
+                               <use xlink:href="{% static 'images/sprite.svg#cart-20' %}"></use>
+                            </svg>
+                            <span class="indicator__value"> {{cart_count}} </span>
+                         </span>
+                            </a>
+                        </div>
+                        <div class="indicator indicator--mobile d-sm-flex">
+                            <a href="https://www.hykonindia.com/wishlist" class="indicator__button desk">
+                                <span class="indicator__area">
+                                    <svg width="20px" height="20px">
+                                       <use xlink:href="{% static 'images/sprite.svg#heart-20' %}"></use>
+                                    </svg>
+                                    <span class="indicator__value">{{cart_count}}</span>
+                                </span>
+                            </a>
+                            <a data-toggle="modal" href="#login-register" id="open-register" class="indicator__button" data-checked="false">
+                                <span class="indicator__area">
+                                    <i class="fas fa-user text-light"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<header class="site__header d-lg-block d-none index-heder">
+    <div class="site-header">
+        <!-- <div class="top-pattern">
+           <img src="https://www.hykonindia.com/hykon-ui/images/patt-top.png"/>
+           </div> -->
+        <div class="site-header__middle container">
+            <div class="site-header__logo">
+                <a href="#" data-checked="true" data-link-updated="https://www.hykonindia.com">
+                    <img class="img-fluid" src="https://www.hykonindia.com/uploads/settings/logo5f0fd3c946235.png">
+                </a>
+            </div>
+            <div class="site-header__search" >
+                <div class="search">
+                    <form class="search__form" action="" method="GET" >
+                        <input class="search__input" name="search" placeholder="Search for your need" aria-label="Site search" type="text" autocomplete="off" id="key_word">
+                        <button class="search__button"  type="submit" id="search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M10.7248 18.5248C15.0326 18.5248 18.5248 15.0326 18.5248 10.7248C18.5248 6.41698 15.0326 2.9248 10.7248 2.9248C6.41698 2.9248 2.9248 6.41698 2.9248 10.7248C2.9248 15.0326 6.41698 18.5248 10.7248 18.5248Z" stroke="black" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.4746 20.4751L16.2334 16.2339" stroke="black" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="clearfix" id="search_error_div" style="display: none;">
+                            <span id="search_error"></span>
+                        </div>
+
+                        <div class="search__border"></div>
+                        <div class="autocomplete-cntr">
+                            <div class="auto-list">
+                                <a href="#" data-checked="false">
+                                    <img src="https://www.hykonindia.com/hykon-ui/images/prd-1.png" width="50">
+                                    <h4>Inverter</h4>
+                                    <p>in Inverters</p>
+                                </a>
+                            </div>
+                            <hr>
+                            <div class="auto-list">
+                                <a href="#" data-checked="false">
+                                    <svg width="20px" height="20px">
+                                        <use xlink:href="{% static 'images/sprite.svg#search-20' %}"></use>
+                                    </svg>
+                                    <h4>Inverter</h4>
+                                    <p>in Inverters</p>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="icon-wrapper d-flex">
+                <div class="indicator">
+                    <a href="https://www.hykonindia.com/cart" class="indicator__button"  data-checked="true">
+                   <span class="indicator__area">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                         <path d="M9.96721 18C9.70492 18 9.53005 17.9109 9.35519 17.7327L1.6612 9.89109C0.612022 8.82178 0 7.30693 0 5.79208C0 4.27723 0.612022 2.76238 1.6612 1.69307C2.71038 0.623762 4.10929 0 5.59563 0C7.08197 0 8.56831 0.623762 9.61749 1.69307L9.96721 2.04951L10.3169 1.69307C11.3661 0.623762 12.765 0 14.3388 0C15.8251 0 17.3115 0.623762 18.3607 1.69307C20.5464 3.92079 20.5464 7.66337 18.3607 9.89109L10.6667 17.7327C10.4044 17.9109 10.2295 18 9.96721 18ZM5.59563 1.78218C4.63388 1.78218 3.5847 2.13861 2.88525 2.94059C1.31148 4.54455 1.31148 7.0396 2.88525 8.64356L9.96721 15.8614L17.0492 8.64356C17.8361 7.84158 18.1858 6.86139 18.1858 5.79208C18.1858 4.72277 17.7486 3.74257 17.0492 2.94059C16.3497 2.22772 15.388 1.78218 14.3388 1.78218C13.2896 1.78218 12.3279 2.22772 11.541 2.94059L10.6667 3.92079C10.3169 4.27723 9.79235 4.27723 9.44262 3.92079L8.48087 2.94059C7.69399 2.13861 6.64481 1.78218 5.59563 1.78218Z" fill="black"/>
+                      </svg>
+                   </span>
+                    </a>
+                </div>
+                <div class="indicator">
+                    <a href="{% url 'carts' %}" class="indicator__button"  data-checked="true">
+                   <span class="indicator__area">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 18.0545C6.5 17.1181 7.25917 16.3589 8.19565 16.3589C9.13213 16.3589 9.8913 17.1181 9.8913 18.0545C9.8913 18.991 9.13213 19.7502 8.19565 19.7502C7.25917 19.7502 6.5 18.991 6.5 18.0545Z" fill="#222222"/>
+                         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8262 18.0545C15.8262 17.1181 16.5853 16.3589 17.5218 16.3589C18.4583 16.3589 19.2175 17.1181 19.2175 18.0545C19.2175 18.991 18.4583 19.7502 17.5218 19.7502C16.5853 19.7502 15.8262 18.991 15.8262 18.0545Z" fill="#222222"/>
+                         <path fill-rule="evenodd" clip-rule="evenodd" d="M0.56543 1.09783C0.56543 0.629585 0.945014 0.25 1.41326 0.25H4.80456C5.20866 0.25 5.55659 0.535196 5.6359 0.931434L6.34797 4.48913H20.0654C20.3181 4.48913 20.5576 4.60183 20.7187 4.79651C20.8797 4.9912 20.9456 5.24758 20.8982 5.49578L19.5405 12.6154C19.4242 13.2009 19.1057 13.7268 18.6407 14.1012C18.178 14.4736 17.5996 14.6723 17.0059 14.663H8.77971C8.18601 14.6723 7.60765 14.4736 7.14497 14.1012C6.68016 13.727 6.36171 13.2013 6.2453 12.6161C6.24525 12.6159 6.24534 12.6163 6.2453 12.6161L4.82897 5.53976C4.82322 5.51635 4.81845 5.49256 4.81469 5.46843L4.10961 1.94565H1.41326C0.945014 1.94565 0.56543 1.56607 0.56543 1.09783ZM6.68735 6.18478L7.90832 12.285C7.94708 12.4802 8.05325 12.6555 8.20825 12.7803C8.36325 12.9051 8.5572 12.9714 8.75614 12.9675L8.77239 12.9674H17.0133L17.0295 12.9675C17.2284 12.9714 17.4224 12.9051 17.5774 12.7803C17.7317 12.6561 17.8376 12.4818 17.8768 12.2878L19.0406 6.18478H6.68735Z" fill="#222222"/>
+                      </svg>
+                      <span class="indicator__value"> {{cart_count}} </span>
+                   </span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-panel__indicators" >
+                <div class="indicator">
+                    {% if user_logged_in %}
+                    <a href="{% url 'customer-dashboard' %}" id="profile" class="indicator__button" style="pointer: cursor">
+                        <span class="indicator__area2" >
+                            <i class="fas fa-user"></i>
+                            <label>{{name}}</label>
+                        </span>
+                    </a>
+                    {% else %}
+                    <a data-toggle="modal" href="#" data-bs-toggle="modal" data-bs-target="#login-register" id="open-register" class="indicator__button" data-checked="false">
+                        <span class="indicator__area2" >
+                            <i class="fas fa-user"></i>
+                            <label>Login</label>
+                        </span>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="button_sec" >
+                    <a href="https://www.hykonindia.com/company/contact" class="btn"  data-checked="true" data-link-updated="https://www.hykonindia.com/company/contact"><span >Contact Us</span>
+                    </a>
+                </div>
+                <div class="button_sec2">
+                    <a href="https://www.hykonindia.com/store-locator" class="btn"  data-checked="true" data-link-updated="https://www.hykonindia.com/store-locator"><span >E-Store</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="site-header__nav-panel">
+            <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
+            <div class="nav-panel nav-panel--sticky" data-sticky-mode="pullToShow" >
+                <div class="nav-panel__container container d-flex justify-content-center">
+                    <div class="nav-panel__row ">
+                        <!-- .nav-links -->
+                        <div class="nav-panel__nav-links nav-links">
+                            <ul class="nav-links__list">
+                                <li class="nav-links__item ">
+                                    <a class="nav-links__item-link" href="{% url 'home' %}" data-checked="false" data-link-updated="{% url 'home' %}">
+                                        <div class="nav-links__item-body">Home</div>
+                                    </a>
+                                </li>
+                                <li>
+                                </li>
+                                <li class="nav-links__item">
+                                    <a class="nav-links__item-link" href="{% url 'about-us' %}" data-checked="false" data-link-updated="{% url 'about-us' %}">
+                                        <div class="nav-links__item-body">
+                                            About
+                                        </div>
+                                    </a>
+                                </li>
+                
+<!--                                <li class="nav-links__item ">-->
+<!--                                    <a class="nav-links__item-link" href="{% url 'dashboard' %}" data-checked="false" data-link-updated="{% url 'dashboard' %}">-->
+<!--                                        <div class="nav-links__item-body">Dashboard</div>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+
+                                </li>
+                                <li class="nav-links__item nav-links__item--has-submenu">
+                                    <a class="nav-links__item-link" href="#" data-checked="false">
+                                        <div class="nav-links__item-body">
+                                            Products&nbsp;<i class="fas fa-angle-down" style="color:#EFEFEF;"></i>
+                                            <svg class="nav-links__item-arrow" width="9px" height="6px">
+                                                <use xlink:href="{% static 'images/sprite.svg#arrow-rounded-down-9x6' %}"></use>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <div class="nav-links__submenu nav-links__submenu--type--megamenu nav-links__submenu--size--nl" >
+                                        <!-- .megamenu -->
+                                        <div class="megamenu ">
+                                            <div class="megamenu__body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="megamenu__links megamenu__links--level--0">
+                                                            <li class="megamenu__item  megamenu__item--with-submenu ">
+                                                                <a href="#" data-checked="false">Domestic</a>
+                                                                <ul class="megamenu__links megamenu__links--level--1">
+                                                                    {% for domestic in domestics %}
+                                                                    <li class="megamenu__item"><a href="{% url 'category' domestic.slug %}" data-checked="false" data-link-updated="{% url 'category' domestic.slug %}">{{ domestic.category_name }}</a></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ul class="megamenu__links megamenu__links--level--0">
+                                                            <li class="megamenu__item  megamenu__item--with-submenu ">
+                                                                <a href="#" data-checked="false">Corporate</a>
+                                                                <ul class="megamenu__links megamenu__links--level--1">
+                                                                    {% for corporate in corporates %}
+                                                                    <li class="megamenu__item"><a href="{% url 'category' corporate.slug %}" data-checked="false" data-link-updated="{% url 'category' corporate.slug %}">{{corporate.category_name}}</a></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .megamenu / end -->
+                                    </div>
+                                </li>
+                                <li>
+                                </li>
+                                <li class="nav-links__item">
+                                    <a class="nav-links__item-link" href="{% url 'news-events' %}" data-checked="false" data-link-updated="{% url 'news-events' %}">
+                                        <div class="nav-links__item-body">
+                                            News &amp; Events
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                </li>
+                                <li class="nav-links__item">
+                                    <a class="nav-links__item-link" href="{% url 'blog' %}" data-checked="false" data-link-updated="{% url 'blog' %}">
+                                        <div class="nav-links__item-body">
+                                            Blog
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                </li>
+                                <li class="nav-links__item">
+                                    <a class="nav-links__item-link" href="{% url 'career'%}" data-checked="true" data-link-updated="{% url 'career'%}">
+                                        <div class="nav-links__item-body">
+                                            Career
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

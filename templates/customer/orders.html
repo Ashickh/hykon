@@ -1,0 +1,99 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block current_page %} My Orders {% endblock %}
+{% block account_header %}My Orders{% endblock %}
+{% block customer_account %}
+{{ block.super }}
+<div class="order-container" id="orderContent">
+    {% for order in orders %}
+    <div class="order-wrapper mb-5">
+        <div class="order-head">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 order-name-btn">
+                    <a href="" class="btn btn-info">{{ order.order_reference_number }}</a>
+                </div>
+                <div class="col-lg-4 col-md-3 payment-btn">
+                    <a href="" class="btn btn-sm btn-secondary"><i class="fa fa-money"></i> Payment mode : {{ order.get_status_display }}</a>
+                </div>
+                <div class="col-lg-3 col-md-3 payment-mode">
+                    <a href="" class="btn btn-sm btn-secondary"><i class="fa fa-money"></i> Payment mode : {{ order.get_payment_method_display }}</a>
+                </div>
+                <div class="col-lg-1 col-md-2 order-track">
+                    <a href="{% url 'customer-order-track' order.id %}" class="btn btn-sm btn-secondary"><i class="fa fa-truck"></i> Track</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-divider"></div>
+        {% with order|get_sub_orders as sub_orders %}
+        {% for sub in sub_orders %}
+        <div class="order-body">
+            <div class="row m-2">
+                <div class="col-md-2 order-pro-img">
+                    <img src="{{ sub.products.get_image_path }}">
+                </div>
+                <div class="col-md-4 order-pro-dec">
+                    <a href="#" class="order-product-name">{{ sub.products.name }}</a>
+                    <p class="quantity">Quantity: {{ sub.quantity }}</p>
+                    <p class="pro-rating">
+                        {% if sub.status.name == 'Completed' %}
+                        <a href="#" onclick="return popupRate({{sub.products.id}});">Rate&Review</a>
+                        {% endif %}
+                        
+                    </p>
+                </div>
+                <div class="col-md-3 order-pro-price">
+                    ₹{{ sub.sale_price }}
+                </div>
+                <div class="col-md-3 order-pro-sts">
+                    <strong>{{ sub.status.name }}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="card-divider"></div>
+        {% endfor %}
+        {% endwith %}
+        <div class="modal" id="rating" style="display: none;">
+            <div class="review-container">
+                <div class="review-modal-header">
+                    <h3 class="review-modal-title">Please rate the product here
+                    </h3>
+                    <a class="close-popup" href="#" onclick="closeModal();">X</a>
+                </div>
+                <div class="card-divider"></div>
+                <div class="star-rating">
+                    <input type="radio" name="rating" value="5" id="star5">
+                    <label for="star5"></label>
+                    <input type="radio" name="rating" value="4" id="star4">
+                    <label for="star4"></label>
+                    <input type="radio" name="rating" value="3" id="star3">
+                    <label for="star3"></label>
+                    <input type="radio" name="rating" value="2" id="star2">
+                    <label for="star2"></label>
+                    <input type="radio" name="rating" value="1" id="star1">
+                    <label for="star1"></label>
+                </div>
+                <form id="rating-form" method="post" action="">
+                    <label for="title">Please enter the review title</label>
+                    <input type="text" class="form-control" name="title" id="title">
+                    <label for="title">Please enter a description</label>
+                    <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                    <div class="clearfix" id="rating_error_div" style="display: none;">
+                        <span id="rating_error">New & Reenter passwords should be same</span>
+                    </div>
+                    <button type="button" class="btn btn-dark" id="rate_product">Rate</button>
+                </form>
+            </div>
+        </div>
+        <div class="order-footer row">
+            <div class="col-md-6 order-details">Order Placed On : <span class="text-dark">{{ order.created_at|date:"j M, Y" }} {{ order.created_at|time:"g:i A" }}</span></div>
+            <div class="col-md-6 text-right">Order Total : <span class="text-dark">{{ order.total_final_price }}</span></div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static 'js/customer/orders.js' %}"></script>
+{% endblock  %}

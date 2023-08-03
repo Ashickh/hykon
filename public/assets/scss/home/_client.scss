@@ -1,0 +1,40 @@
+@import './../bs-breakpoint';
+/*/////////////////////////// clients ///////////////////////////*/
+
+.sec_ptb_80 {
+    padding: 60px 0px;
+    @include respond-to("medium"){
+        padding: 80px 0px;
+    }
+}
+.space-30{
+   padding-bottom: 30px;
+}
+@media (max-width: 760px) {
+    .block-brands__item a img{
+       width: 100%;
+   }
+}
+.block-brands__item a img {
+   /* filter: url(filters.svg#grayscale);
+    Firefox 3.5+ */
+    filter: gray;
+   /* IE5+ */
+    -webkit-filter: grayscale(1);
+   /* Webkit Nightlies & Chrome Canary */
+    -webkit-transition: all .8s ease-in-out;
+}
+.block-brands__item a img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+    -webkit-transform: scale(1.05);
+}
+.clients-wrapper span{
+   font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 31px;
+    color: #000000;
+    text-align: center;
+    display: block;
+}

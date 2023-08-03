@@ -1,0 +1,40 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+
+{%block body_block%}
+
+<body class="">
+
+    <h2>Order Details</h2>
+
+
+
+      <div class="card" style="width: 40rem;">
+        
+        <img src="{{parent_order.products.image.get_file_path }}" class="card-img-top" alt="..." style="height: 400px; width: 400px;">
+        <div class="card-body">
+            <h1 class="card-title">PRODUCT : {{parent_order.products}}</h1>
+          <p class="card-text">{{parent_order.product.meta_description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Quantity : {{parent_order.quantity}}</li>
+          <li class="list-group-item">MRP : {{parent_order.mrp}}/-</li>
+          <li class="list-group-item">Sale Price : {{parent_order.sale_price}}/-</li>
+          <li class="list-group-item">Final Price : {{parent_order.price}}/-</li>
+          
+          <li class="list-group-item">Discount : {{parent_order.discount}}</li>
+          <li class="list-group-item">Order Status : {{parent_order.status}}</li>
+          
+        </ul>
+        <div class="card-body">
+          <a href="{%url 'track-order' parent_order.id%}" class="card-link">Track Order</a>
+          <a href="{%url 'order_dash'%}" class="card-link">Back</a>
+        </div>
+      </div>
+
+
+
+
+</body>
+{% endblock %}
+</html>

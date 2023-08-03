@@ -1,0 +1,73 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block current_page %} Edit Profile {% endblock %}
+{% block account_header %}Edit Profile{% endblock %}
+{% block customer_account %}
+{{ block.super }}
+<div class="profile-container" id="editProfileContent">
+    <div class="user-form">
+        <div class="user-form-header">
+            <h5 class="float-left">Edit Profile</h5>
+            <a class="btn btn-info float-right" href="" onclick="return popupPassword()">Change Password</a>
+            <div class="modal change-password" id="passwordId">
+                {% csrf_token %}
+                <div class="password-container">
+                    <div class="password-modal-head">
+                        <h4 class="pwd-modal-title">
+                            Change Password
+                        </h4>
+                        <a href="#" onclick="closePopup()">X</a>
+                    </div>
+                    <div class="password-modal-body">
+                        <div class="old-pwd">
+                            <label for="old">Old password :</label>
+                            <input type="password" name="old" id="old">
+                        </div>
+                        <div class="old-pwd">
+                            <label for="new">New password :</label>
+                            <input type="password" name="new" id="new">
+                        </div>
+                        <div class="old-pwd">
+                            <label for="new">Re-enter password :</label>
+                            <input type="password" name="re_enter" id="re_enter">
+                        </div>
+                        <br>
+                        <div class="clearfix" id="password_error_div" style="display: none;">
+                            <span id="password_error">New & Reenter passwords should be same</span>
+                        </div>
+                        <div class="change-pswd">
+                            <button id="change_password" class="btn btn-primary" onclick="closePswdModal()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="user-form-card">
+            <form id="" action="{% url 'customer-profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    {% for field in form %}
+                        <div class="col-md-6">
+                        {{ field | as_crispy_field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-5 mb-5">
+                    <button id="update_address" type="submit" class="btn btn-primary ml-5">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static 'js/customer/profile.js' %}">
+    function closePswdModal() {
+        var modal = document.getElementById("passwordId");
+        modal.style.display = "none";
+      }
+</script>
+{% endblock %}
